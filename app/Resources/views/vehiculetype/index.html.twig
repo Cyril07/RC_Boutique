@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vehiculetypes list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehiculeType in vehiculeTypes %}
+            <tr>
+                <td><a href="{{ path('vehiculetype_show', { 'id': vehiculeType.id }) }}">{{ vehiculeType.id }}</a></td>
+                <td>{{ vehiculeType.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vehiculetype_show', { 'id': vehiculeType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vehiculetype_edit', { 'id': vehiculeType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vehiculetype_new') }}">Create a new vehiculeType</a>
+        </li>
+    </ul>
+{% endblock %}

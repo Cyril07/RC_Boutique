@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Escs list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Waterproof</th>
+                <th>Sensored</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for esc in escs %}
+            <tr>
+                <td><a href="{{ path('esc_show', { 'id': esc.id }) }}">{{ esc.id }}</a></td>
+                <td>{% if esc.waterproof %}Yes{% else %}No{% endif %}</td>
+                <td>{% if esc.sensored %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('esc_show', { 'id': esc.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('esc_edit', { 'id': esc.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('esc_new') }}">Create a new esc</a>
+        </li>
+    </ul>
+{% endblock %}

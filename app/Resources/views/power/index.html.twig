@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Powers list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for power in powers %}
+            <tr>
+                <td><a href="{{ path('power_show', { 'id': power.id }) }}">{{ power.id }}</a></td>
+                <td>{{ power.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('power_show', { 'id': power.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('power_edit', { 'id': power.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('power_new') }}">Create a new power</a>
+        </li>
+    </ul>
+{% endblock %}

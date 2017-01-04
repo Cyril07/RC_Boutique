@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motorturns list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Turns</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for motorTurn in motorTurns %}
+            <tr>
+                <td><a href="{{ path('motorturns_show', { 'id': motorTurn.id }) }}">{{ motorTurn.id }}</a></td>
+                <td>{{ motorTurn.turns }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('motorturns_show', { 'id': motorTurn.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('motorturns_edit', { 'id': motorTurn.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('motorturns_new') }}">Create a new motorTurn</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Scales list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for scale in scales %}
+            <tr>
+                <td><a href="{{ path('scale_show', { 'id': scale.id }) }}">{{ scale.id }}</a></td>
+                <td>{{ scale.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('scale_show', { 'id': scale.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('scale_edit', { 'id': scale.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('scale_new') }}">Create a new scale</a>
+        </li>
+    </ul>
+{% endblock %}

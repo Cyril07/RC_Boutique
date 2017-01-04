@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kit.id }}</td>
+            </tr>
+            <tr>
+                <th>Kitcompletness</th>
+                <td>{% if kit.kitCompletness %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Terrain</th>
+                <td>{% if kit.terrain %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Drivetrainfull</th>
+                <td>{% if kit.driveTrainFull %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('kit_edit', { 'id': kit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

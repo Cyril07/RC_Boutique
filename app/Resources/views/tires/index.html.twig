@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tires list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Frontwheelposition</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tire in tires %}
+            <tr>
+                <td><a href="{{ path('tires_show', { 'id': tire.id }) }}">{{ tire.id }}</a></td>
+                <td>{% if tire.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tires_show', { 'id': tire.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tires_edit', { 'id': tire.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tires_new') }}">Create a new tire</a>
+        </li>
+    </ul>
+{% endblock %}

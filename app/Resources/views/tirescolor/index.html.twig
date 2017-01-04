@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tirescolors list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Color</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tiresColor in tiresColors %}
+            <tr>
+                <td><a href="{{ path('tirescolor_show', { 'id': tiresColor.id }) }}">{{ tiresColor.id }}</a></td>
+                <td>{{ tiresColor.color }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tirescolor_show', { 'id': tiresColor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tirescolor_edit', { 'id': tiresColor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tirescolor_new') }}">Create a new tiresColor</a>
+        </li>
+    </ul>
+{% endblock %}

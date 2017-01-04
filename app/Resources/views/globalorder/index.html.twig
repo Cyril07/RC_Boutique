@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Globalorders list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dateorder</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for globalOrder in globalOrders %}
+            <tr>
+                <td><a href="{{ path('globalorder_show', { 'id': globalOrder.id }) }}">{{ globalOrder.id }}</a></td>
+                <td>{% if globalOrder.dateOrder %}{{ globalOrder.dateOrder|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('globalorder_show', { 'id': globalOrder.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('globalorder_edit', { 'id': globalOrder.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('globalorder_new') }}">Create a new globalOrder</a>
+        </li>
+    </ul>
+{% endblock %}

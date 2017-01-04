@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motors list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sensored</th>
+                <th>Brushless</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for motor in motors %}
+            <tr>
+                <td><a href="{{ path('motor_show', { 'id': motor.id }) }}">{{ motor.id }}</a></td>
+                <td>{% if motor.sensored %}Yes{% else %}No{% endif %}</td>
+                <td>{% if motor.brushless %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('motor_show', { 'id': motor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('motor_edit', { 'id': motor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('motor_new') }}">Create a new motor</a>
+        </li>
+    </ul>
+{% endblock %}

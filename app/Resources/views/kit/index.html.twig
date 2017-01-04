@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kits list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kitcompletness</th>
+                <th>Terrain</th>
+                <th>Drivetrainfull</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kit in kits %}
+            <tr>
+                <td><a href="{{ path('kit_show', { 'id': kit.id }) }}">{{ kit.id }}</a></td>
+                <td>{% if kit.kitCompletness %}Yes{% else %}No{% endif %}</td>
+                <td>{% if kit.terrain %}Yes{% else %}No{% endif %}</td>
+                <td>{% if kit.driveTrainFull %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kit_show', { 'id': kit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('kit_edit', { 'id': kit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kit_new') }}">Create a new kit</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Wts list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wt in wts %}
+            <tr>
+                <td><a href="{{ path('wt_show', { 'id': wt.id }) }}">{{ wt.id }}</a></td>
+                <td>{{ wt.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('wt_show', { 'id': wt.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('wt_edit', { 'id': wt.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('wt_new') }}">Create a new wt</a>
+        </li>
+    </ul>
+{% endblock %}

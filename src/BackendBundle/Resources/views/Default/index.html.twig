@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <h1>Page d'Administration</h1>
+</div>
+
+<ul class="nav nav-pills">
+
+    <li role="presentation">
+        <a href="{{ path('battery_index') }}"> Battery </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('batterytype_index') }}"> Battery Type </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('body_index') }}"> Body </a>
+    </li>    
+    <li role="presentation">
+        <a href="{{ path('brand_index') }}"> Brand </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('category_index') }}"> Category </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('cellcount_index') }}"> Cell Count </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('esc_index') }}"> Esc </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('globalorder_index') }}"> Global Order </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('kit_index') }}"> Kit </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('motor_index') }}"> Motor </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('motorturns_index') }}"> Motor Turns </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('oil_index') }}"> Oil </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('orderdetail_index') }}"> Order detail </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('power_index') }}"> Power </a>
+    </li>
+    <li role="presentation" class="active">
+        <a href="{{ path('product_index') }}"> Product </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('scale_index') }}"> Scale </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('secondcategory_index') }}"> Second Category </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('tires_index') }}"> Tires </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('tirescolor_index') }}"> Tires Color </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('vehiculetype_index') }}"> Vehicule Type </a>
+    </li>
+    <li role="presentation">
+        <a href="{{ path('wt_index') }}"> Wt </a>
+    </li>
+
+</ul>
+
+{% endblock %}

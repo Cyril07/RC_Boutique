@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motor</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ motor.id }}</td>
+            </tr>
+            <tr>
+                <th>Sensored</th>
+                <td>{% if motor.sensored %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Brushless</th>
+                <td>{% if motor.brushless %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('motor_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('motor_edit', { 'id': motor.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

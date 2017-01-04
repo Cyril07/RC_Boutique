@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cellcounts list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cellCount in cellCounts %}
+            <tr>
+                <td><a href="{{ path('cellcount_show', { 'id': cellCount.id }) }}">{{ cellCount.id }}</a></td>
+                <td>{{ cellCount.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cellcount_show', { 'id': cellCount.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cellcount_edit', { 'id': cellCount.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cellcount_new') }}">Create a new cellCount</a>
+        </li>
+    </ul>
+{% endblock %}

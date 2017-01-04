@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Batterytypes list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lib</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for batteryType in batteryTypes %}
+            <tr>
+                <td><a href="{{ path('batterytype_show', { 'id': batteryType.id }) }}">{{ batteryType.id }}</a></td>
+                <td>{{ batteryType.lib }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('batterytype_show', { 'id': batteryType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('batterytype_edit', { 'id': batteryType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('batterytype_new') }}">Create a new batteryType</a>
+        </li>
+    </ul>
+{% endblock %}
