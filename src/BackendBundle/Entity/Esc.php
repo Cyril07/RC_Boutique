@@ -45,6 +45,10 @@ class Esc
      */
     private $power;
 
+    public function __toString() {
+        return strval($this->id);
+    }
+
 
     /**
      * Get id

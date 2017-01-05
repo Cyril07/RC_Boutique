@@ -24,9 +24,13 @@ class MotorTurns
     /**
      * @var int
      *
-     * @ORM\Column(name="turns", type="integer", unique=true)
+     * @ORM\Column(name="turns", type="decimal",scale=1, unique=true)
      */
     private $turns;
+
+    public function __toString() {
+        return $this->turns;
+    }
 
 
     /**

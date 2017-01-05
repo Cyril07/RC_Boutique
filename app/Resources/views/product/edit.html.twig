@@ -1,38 +1,113 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Product edit</h1>
+    <div class="second_category" id="sc1" style="border:1px solid red; height:300px">
+        <table class="table">
+        {% for motor in motors %}
+            <tr class="motor" motorId= {{ motor.id }}>
+                <td><a href="{{ path('motor_show', { 'id': motor.id }) }}">{{ motor.id }}</a></td>
+                <td>{% if motor.sensored %}Yes{% else %}No{% endif %}</td>
+                <td>{% if motor.brushless %}Yes{% else %}No{% endif %}</td>
+                <td>{{ motor.scale }} </td>
+                <td>{{ motor.motorTurns }} </td>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('motor_show', { 'id': motor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('motor_edit', { 'id': motor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        <table class="table">
+            {% for esc in escs %}
+                <tr class="esc" escId= {{ esc.id }}>
+                    <td><a href="{{ path('esc_show', { 'id': esc.id }) }}">{{ esc.id }}</a></td>
+                    <td>{% if esc.waterproof %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if esc.sensored %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ esc.scale }} </td>
+                    <td>{{ esc.power }} </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('esc_show', { 'id': esc.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('esc_edit', { 'id': esc.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <h1>Product edit</h1>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" value="Edit" />
+        {{ form_end(edit_form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('product_index') }}">Back to the list</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    
 {% endblock %}
 
 {% block javascripts %}
     <script>
         $("#backendbundle_product_category").click(function() {
-            console.log("J'ai cliqué sur une categorie"+$(this).val());
+            console.log("J'ai cliqué sur la categorie : "+$(this).val());
             //appel AJAX
             $.ajax({
                 url: "{{ path('json_category') }}",
                 type: "POST",
                 data: { category_id:$(this).val() },
-                success: function (data,statut,ret) {
-                    console.log("Retour"+ret+"statut"+statut);
+                success: function (data) {
+                    //console.log(data);
+                    var dataObj = JSON.parse(data);
+                    //console.log(dataObj.lib);
+                    $("#backendbundle_product_secondCategory")
+                        .find('option')
+                        .remove()
+                    ;
+                    for (var item in dataObj ) {
+                        $("#backendbundle_product_secondCategory")
+                            .append ("<option value='"+dataObj[item].id+"'>"+dataObj[item].lib+"</option>") 
+                            console.log(item,dataObj[item]);
+                        ;
+                    }
                 }
             })
         })
+
+        $("tr.motor").click(function(){
+            var motorId = $(this).attr('motorId');
+            console.log(motorId);
+            $("#backendbundle_product_motor").val(motorId);
+        })
+
+        $("tr.esc").click(function(){
+            var escId = $(this).attr('escId');
+            console.log(escId);
+            $("#backendbundle_product_esc").val(escId);
+        })
+
+        $("#backendbundle_product_secondCategory").click(function(){
+            console.log($(this).val());
+        })
+
     </script>
 {% endblock %}

@@ -5,6 +5,8 @@ namespace BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use BackendBundle\Form\MotorType;
+use BackendBundle\Form\EscType;
 
 class ProductType extends AbstractType
 {
@@ -13,7 +15,17 @@ class ProductType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('ref')->add('price')->add('lib')->add('brand')->add('category')->add('secondCategory')        ;
+        $builder
+            ->add('ref')
+            ->add('price')
+            ->add('lib')
+            ->add('brand')
+            ->add('category')
+            ->add('secondCategory')
+            ->add('motor')
+            ->add('esc')
+        ;
+        //$builder->add('motor', MotorType::class);
     }
     
     /**

@@ -28,6 +28,9 @@ class CellCount
      */
     private $lib;
 
+    public function __toString() {
+        return $this->lib;
+    }
 
     /**
      * Get id

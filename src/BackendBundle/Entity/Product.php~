@@ -31,7 +31,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="decimal", precision=1, scale=1)
+     * @ORM\Column(name="price", type="decimal")
      */
     private $price;
 
@@ -56,6 +56,18 @@ class Product
      * @ORM\ManyToOne(targetEntity="SecondCategory")
      */
     private $secondCategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Motor")
+     */
+    private $motor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Esc")
+     */
+    private $esc;
+
+
 
 
     /**
@@ -210,5 +222,29 @@ class Product
     public function getSecondCategory()
     {
         return $this->secondCategory;
+    }
+
+    /**
+     * Set motor
+     *
+     * @param \BackendBundle\Entity\Motor $motor
+     *
+     * @return Product
+     */
+    public function setMotor(\BackendBundle\Entity\Motor $motor = null)
+    {
+        $this->motor = $motor;
+
+        return $this;
+    }
+
+    /**
+     * Get motor
+     *
+     * @return \BackendBundle\Entity\Motor
+     */
+    public function getMotor()
+    {
+        return $this->motor;
     }
 }

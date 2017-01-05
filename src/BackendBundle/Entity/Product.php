@@ -57,6 +57,18 @@ class Product
      */
     private $secondCategory;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Motor")
+     */
+    private $motor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Esc")
+     */
+    private $esc;
+
+
+
 
     /**
      * Get id
@@ -210,5 +222,53 @@ class Product
     public function getSecondCategory()
     {
         return $this->secondCategory;
+    }
+
+    /**
+     * Set motor
+     *
+     * @param \BackendBundle\Entity\Motor $motor
+     *
+     * @return Product
+     */
+    public function setMotor(\BackendBundle\Entity\Motor $motor = null)
+    {
+        $this->motor = $motor;
+
+        return $this;
+    }
+
+    /**
+     * Get motor
+     *
+     * @return \BackendBundle\Entity\Motor
+     */
+    public function getMotor()
+    {
+        return $this->motor;
+    }
+
+    /**
+     * Set esc
+     *
+     * @param \BackendBundle\Entity\Esc $esc
+     *
+     * @return Product
+     */
+    public function setEsc(\BackendBundle\Entity\Esc $esc = null)
+    {
+        $this->esc = $esc;
+
+        return $this;
+    }
+
+    /**
+     * Get esc
+     *
+     * @return \BackendBundle\Entity\Esc
+     */
+    public function getEsc()
+    {
+        return $this->esc;
     }
 }

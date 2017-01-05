@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Secondcategory controller.
@@ -20,12 +22,24 @@ class SecondCategoryController extends Controller
      * @Route("/json_category", name="json_category")
      * @Method("POST")
      */
-    public function jsonAction()
-    {
-        $test = array(
-            "key01"=>"value01"
-        );
-        return new Response(json_encode($test));
+    public function jsonAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $request_category_id = $request->request->get("category_id");
+        //var_dump("categoryid",$request_category_id);
+        $category = $em->getRepository("BackendBundle:Category")->find($request_category_id);
+        $second_categories_after_select = $em->getRepository("BackendBundle:SecondCategory")->findByCategory($category);
+        //var_dump(json_encode($second_category_after_select));
+        //return;
+        $rep = [];
+        foreach ($second_categories_after_select as $second_category) {
+            $rep[] = array(
+                "id"=>$second_category->getId(),
+                "lib"=>$second_category->getLib(),
+            );
+        }
+
+        return new Response(json_encode($rep));
     }
 
     

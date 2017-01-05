@@ -83,19 +83,31 @@ class ProductController extends Controller
     public function editAction(Request $request, Product $product)
     {
         $deleteForm = $this->createDeleteForm($product);
+        $em=$this->getDoctrine()->getManager();
+        $motors = $em->getRepository('BackendBundle:Motor')->findAll();
+        $escs = $em->getRepository('BackendBundle:Esc')->findAll();
         $editForm = $this->createForm('BackendBundle\Form\ProductType', $product);
+
         $editForm->handleRequest($request);
 
+        $motorForm = $this->createForm('BackendBundle\Form\MotorType',$product->getMotor());
+        $escForm = $this->createForm('BackendBundle\Form\EscType',$product->getEsc());
+
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
         }
 
         return $this->render('product/edit.html.twig', array(
             'product' => $product,
+            'motors'=> $motors,
+            'escs' => $escs,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'motor_form' => $motorForm->createView(),
+
         ));
     }
 

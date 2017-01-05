@@ -35,6 +35,10 @@ class Brand
      */
     private $shortLib;
 
+    public function __toString() {
+        return $this->lib;
+    }
+
 
     /**
      * Get id

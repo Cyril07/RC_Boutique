@@ -28,6 +28,10 @@ class TiresColor
      */
     private $color;
 
+    public function __toString() {
+        return $this->color;
+    }
+
 
     /**
      * Get id

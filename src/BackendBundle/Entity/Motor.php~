@@ -45,6 +45,9 @@ class Motor
      */
     private $motorTurns;
 
+    public function __toString(){
+        return strval($this->id);
+    }
 
     /**
      * Get id
