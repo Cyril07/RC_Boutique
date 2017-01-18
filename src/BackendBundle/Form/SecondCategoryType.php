@@ -13,7 +13,11 @@ class SecondCategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lib')->add('category')        ;
+        $builder
+            ->add('lib')
+            ->add('category')
+            ->add('div_name')
+            ;
     }
     
     /**

@@ -7,6 +7,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use BackendBundle\Form\MotorType;
 use BackendBundle\Form\EscType;
+use BackendBundle\Form\BatteryType;
+use BackendBundle\Form\BodyType;
+use BackendBundle\Form\KitType;
+use BackendBundle\Form\OilType;
+use BackendBundle\Form\TiresType;
 
 class ProductType extends AbstractType
 {
@@ -24,6 +29,11 @@ class ProductType extends AbstractType
             ->add('secondCategory')
             ->add('motor')
             ->add('esc')
+            ->add('battery')
+            ->add('body')
+            ->add('kit')
+            ->add('oil')
+            ->add('tires')
         ;
         //$builder->add('motor', MotorType::class);
     }

@@ -52,6 +52,10 @@ class Kit
      */
     private $vehiculeType;
 
+    public function __toString() {
+        return strval($this->id);
+    }
+
     /**
      * Get id
      *

@@ -33,6 +33,10 @@ class Body
      */
     private $scale;
 
+    public function __toString() {
+        return strval($this->id);
+    }
+
 
     /**
      * Get id

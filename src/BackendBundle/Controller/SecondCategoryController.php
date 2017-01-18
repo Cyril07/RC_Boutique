@@ -36,6 +36,7 @@ class SecondCategoryController extends Controller
             $rep[] = array(
                 "id"=>$second_category->getId(),
                 "lib"=>$second_category->getLib(),
+                "div_name"=>$second_category->getDivName(),
             );
         }
 

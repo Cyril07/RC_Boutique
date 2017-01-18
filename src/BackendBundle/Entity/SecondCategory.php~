@@ -29,6 +29,13 @@ class SecondCategory
     private $lib;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="div_name", type="string", length=25)
+     */
+    private $div_name;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category")
      */
     private $category;
@@ -94,5 +101,29 @@ class SecondCategory
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set divName
+     *
+     * @param string $divName
+     *
+     * @return SecondCategory
+     */
+    public function setDivName($divName)
+    {
+        $this->div_name = $divName;
+
+        return $this;
+    }
+
+    /**
+     * Get divName
+     *
+     * @return string
+     */
+    public function getDivName()
+    {
+        return $this->div_name;
     }
 }

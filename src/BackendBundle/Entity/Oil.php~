@@ -26,6 +26,10 @@ class Oil
      */
     private $wt;
 
+    public function __toString() {
+        return strval($this->wt);
+    }
+
 
     /**
      * Get id

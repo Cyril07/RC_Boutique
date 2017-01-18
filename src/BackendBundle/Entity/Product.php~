@@ -67,13 +67,36 @@ class Product
      */
     private $esc;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Battery")
+     */
+    private $battery;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Body")
+     */
+    private $body;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Kit")
+     */
+    private $kit;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Oil")
+     */
+    private $oil;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Tires")
+     */
+    private $tires;
+
+    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -246,5 +269,149 @@ class Product
     public function getMotor()
     {
         return $this->motor;
+    }
+
+    /**
+     * Set esc
+     *
+     * @param \BackendBundle\Entity\Esc $esc
+     *
+     * @return Product
+     */
+    public function setEsc(\BackendBundle\Entity\Esc $esc = null)
+    {
+        $this->esc = $esc;
+
+        return $this;
+    }
+
+    /**
+     * Get esc
+     *
+     * @return \BackendBundle\Entity\Esc
+     */
+    public function getEsc()
+    {
+        return $this->esc;
+    }
+
+    /**
+     * Set battery
+     *
+     * @param \BackendBundle\Entity\Battery $battery
+     *
+     * @return Product
+     */
+    public function setBattery(\BackendBundle\Entity\Battery $battery = null)
+    {
+        $this->battery = $battery;
+
+        return $this;
+    }
+
+    /**
+     * Get battery
+     *
+     * @return \BackendBundle\Entity\Battery
+     */
+    public function getBattery()
+    {
+        return $this->battery;
+    }
+
+    /**
+     * Set body
+     *
+     * @param \BackendBundle\Entity\Body $body
+     *
+     * @return Product
+     */
+    public function setBody(\BackendBundle\Entity\Body $body = null)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return \BackendBundle\Entity\Body
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set kit
+     *
+     * @param \BackendBundle\Entity\Kit $kit
+     *
+     * @return Product
+     */
+    public function setKit(\BackendBundle\Entity\Kit $kit = null)
+    {
+        $this->kit = $kit;
+
+        return $this;
+    }
+
+    /**
+     * Get kit
+     *
+     * @return \BackendBundle\Entity\Kit
+     */
+    public function getKit()
+    {
+        return $this->kit;
+    }
+
+    /**
+     * Set oil
+     *
+     * @param \BackendBundle\Entity\Oil $oil
+     *
+     * @return Product
+     */
+    public function setOil(\BackendBundle\Entity\Oil $oil = null)
+    {
+        $this->oil = $oil;
+
+        return $this;
+    }
+
+    /**
+     * Get oil
+     *
+     * @return \BackendBundle\Entity\Oil
+     */
+    public function getOil()
+    {
+        return $this->oil;
+    }
+
+    /**
+     * Set tires
+     *
+     * @param \BackendBundle\Entity\Tires $tires
+     *
+     * @return Product
+     */
+    public function setTires(\BackendBundle\Entity\Tires $tires = null)
+    {
+        $this->tires = $tires;
+
+        return $this;
+    }
+
+    /**
+     * Get tires
+     *
+     * @return \BackendBundle\Entity\Tires
+     */
+    public function getTires()
+    {
+        return $this->tires;
     }
 }

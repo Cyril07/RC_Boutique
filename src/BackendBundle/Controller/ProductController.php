@@ -84,14 +84,25 @@ class ProductController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
         $em=$this->getDoctrine()->getManager();
+        
         $motors = $em->getRepository('BackendBundle:Motor')->findAll();
         $escs = $em->getRepository('BackendBundle:Esc')->findAll();
+        $batteries = $em->getRepository('BackendBundle:Battery')->findAll();
+        $bodies = $em->getRepository('BackendBundle:Body')->findAll();
+        $kits = $em->getRepository('BackendBundle:Kit')->findAll();
+        $oils = $em->getRepository('BackendBundle:Oil')->findAll();
+        $tires = $em->getRepository('BackendBundle:Tires')->findAll();
         $editForm = $this->createForm('BackendBundle\Form\ProductType', $product);
 
         $editForm->handleRequest($request);
 
         $motorForm = $this->createForm('BackendBundle\Form\MotorType',$product->getMotor());
         $escForm = $this->createForm('BackendBundle\Form\EscType',$product->getEsc());
+        $batteryForm = $this->createForm('BackendBundle\Form\BatteryType',$product->getBattery());
+        $bodyForm = $this->createForm('BackendBundle\Form\BodyType',$product->getBody());
+        $kitForm = $this->createForm('BackendBundle\Form\KitType',$product->getKit());
+        $oilForm = $this->createForm('BackendBundle\Form\OilType',$product->getOil());
+        $tiresForm = $this->createForm('BackendBundle\Form\TiresType',$product->getTires());
 
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -104,6 +115,11 @@ class ProductController extends Controller
             'product' => $product,
             'motors'=> $motors,
             'escs' => $escs,
+            'batteries' => $batteries,
+            'bodies' => $bodies,
+            'kits' => $kits,
+            'oils' => $oils,
+            'tires' => $tires,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'motor_form' => $motorForm->createView(),

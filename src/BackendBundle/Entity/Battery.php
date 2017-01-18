@@ -38,6 +38,10 @@ class Battery
      */
     private $batteryType;
 
+    public function __toString() {
+        return strval($this->id);
+    }
+
 
     /**
      * Get id

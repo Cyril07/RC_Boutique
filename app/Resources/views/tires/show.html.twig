@@ -7,11 +7,11 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ tire.id }}</td>
+                <td>{{ tires.id }}</td>
             </tr>
             <tr>
                 <th>Frontwheelposition</th>
-                <td>{% if tire.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
+                <td>{% if tires.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
@@ -21,7 +21,7 @@
             <a href="{{ path('tires_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('tires_edit', { 'id': tire.id }) }}">Edit</a>
+            <a href="{{ path('tires_edit', { 'id': tires.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
