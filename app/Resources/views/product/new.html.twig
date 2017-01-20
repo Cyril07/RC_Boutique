@@ -1,16 +1,259 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    <div class="second_category" id="motor" style="border:1px solid red; height:150px">
+        <table class="table">
+        {% for motor in second_category_details.motors %}
+            <tr class="motor" motorId= {{ motor.id }}>
+                <td><a href="{{ path('motor_show', { 'id': motor.id }) }}">{{ motor.id }}</a></td>
+                <td>{% if motor.sensored %}Yes{% else %}No{% endif %}</td>
+                <td>{% if motor.brushless %}Yes{% else %}No{% endif %}</td>
+                <td>{{ motor.scale }} </td>
+                <td>{{ motor.motorTurns }} </td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('motor_show', { 'id': motor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('motor_edit', { 'id': motor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="esc" style="border:1px solid blue; height:150px">
+        <table class="table">
+            {% for esc in second_category_details.escs %}
+                <tr class="esc" escId= {{ esc.id }}>
+                    <td><a href="{{ path('esc_show', { 'id': esc.id }) }}">{{ esc.id }}</a></td>
+                    <td>{% if esc.waterproof %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if esc.sensored %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ esc.scale }} </td>
+                    <td>{{ esc.power }} </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('esc_show', { 'id': esc.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('esc_edit', { 'id': esc.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="battery" style="border:1px solid yellow; height:150px">
+        <table class="table">
+            {% for battery in second_category_details.batteries %}
+                <tr class="battery" batteryId= {{ battery.id }}>
+                    <td><a href="{{ path('battery_show', { 'id': battery.id }) }}">{{ battery.id }}</a></td>
+                    <td>{{ battery.capacity }} </td>
+                    <td>{{ battery.cellCount }} </td>
+                    <td>{{ battery.batteryType }} </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('battery_show', { 'id': battery.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('battery_edit', { 'id': battery.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="body" style="border:1px solid purple; height:150px">
+        <table class="table">
+            {% for body in second_category_details.bodies %}
+                <tr class="body" bodyId= {{ body.id }}>
+                    <td><a href="{{ path('body_show', { 'id': body.id }) }}">{{ body.id }}</a></td>
+                    <td>{% if body.paint %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('body_show', { 'id': body.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('body_edit', { 'id': body.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="kit" style="border:1px solid pink; height:150px">
+        <table class="table">
+            {% for kit in second_category_details.kits %}
+                <tr class="kit" kitId= {{ kit.id }}>
+                    <td><a href="{{ path('kit_show', { 'id': kit.id }) }}">{{ kit.id }}</a></td>
+                    <td>{% if kit.kitCompletness %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if kit.terrain %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if kit.driveTrainFull %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('kit_show', { 'id': kit.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('kit_edit', { 'id': kit.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="oil" style="border:1px solid black; height:150px">
+        <table>
+            {% for oil in second_category_details.oils %}
+                <tr class="oil" oilId= {{ oil.id }}>
+                    <td><a href="{{ path('oil_show', { 'id': oil.id }) }}">{{ oil.id }}</a></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('oil_show', { 'id': oil.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('oil_edit', { 'id': oil.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="second_category" id="tires" style="border:1px solid green; height:150px">
+        <table>
+            {% for tire in second_category_details.tires %}
+                <tr class="tires" tiresId= {{ tire.id }}>
+                    <td><a href="{{ path('tires_show', { 'id': tire.id }) }}">{{ tire.id }}</a></td>
+                    <td>{% if tire.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('tires_show', { 'id': tire.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('tires_edit', { 'id': tire.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    </div>
+
     <h1>Product creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <a href="{{ path('product_index') }}">Back to the list</a>
+            </li>
+        </ul>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $(".second_category").hide();
+
+        $("#backendbundle_product_secondCategory").click(function() {
+            
+            var idSelected = $("#backendbundle_product_secondCategory option:selected").attr("div_name");
+            $(".second_category").hide();
+            $("#"+idSelected).toggle();
+
+        })
+
+        $("#backendbundle_product_category").click(function() {
+            console.log("J'ai cliqué sur la categorie : "+$(this).val());
+            //appel AJAX
+            $.ajax({
+                url: "{{ path('json_category') }}",
+                type: "POST",
+                data: { category_id:$(this).val() },
+                success: function (data) {
+                    //console.log(data);
+                    var dataObj = JSON.parse(data);
+                    //console.log(dataObj.lib);
+                    $("#backendbundle_product_secondCategory")
+                        .find('option')
+                        .remove()
+                    ;
+                    for (var item in dataObj ) {
+                        $("#backendbundle_product_secondCategory")
+                            .append ("<option div_name='"+dataObj[item].div_name+"' value='"+dataObj[item].id+"'>"+dataObj[item].lib+"</option>");                   
+                        console.log("item",item,dataObj[item]);
+                    }
+                }
+            })
+        })
+
+        $("tr.motor").click(function(){
+            var motorId = $(this).attr('motorId');
+            console.log(motorId);
+            $("#backendbundle_product_motor").val(motorId);
+        })
+
+        $("tr.esc").click(function(){
+            var escId = $(this).attr('escId');
+            console.log(escId);
+            $("#backendbundle_product_esc").val(escId);
+        })
+
+        $("tr.battery").click(function(){
+            var batteryId = $(this).attr('batteryId');
+            console.log(batteryId);
+            $("#backendbundle_product_battery").val(batteryId);
+        })
+
+        $("tr.body").click(function(){
+            var bodyId = $(this).attr('bodyId');
+            console.log(bodyId);
+            $("#backendbundle_product_body").val(bodyId);
+        })
+
+        $("tr.kit").click(function(){
+            var kitId = $(this).attr('kitId');
+            console.log(kitId);
+            $("#backendbundle_product_kit").val(kitId);
+        })
+
+        $("tr.oil").click(function(){
+            var oilId = $(this).attr('oilId');
+            console.log(oilId);
+            $("#backendbundle_product_oil").val(oilId);
+        })
+
+        $("tr.tires").click(function(){
+            var tiresId = $(this).attr('tiresId');
+            console.log(tiresId);
+            $("#backendbundle_product_tires").val(tiresId);
+        })
+
+    </script>
 {% endblock %}

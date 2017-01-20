@@ -44,6 +44,8 @@ class ProductController extends Controller
         $form = $this->createForm('BackendBundle\Form\ProductType', $product);
         $form->handleRequest($request);
 
+        $second_category_details = $this->getSubCategories();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
@@ -54,6 +56,7 @@ class ProductController extends Controller
 
         return $this->render('product/new.html.twig', array(
             'product' => $product,
+            'second_category_details' => $second_category_details,
             'form' => $form->createView(),
         ));
     }
@@ -85,13 +88,8 @@ class ProductController extends Controller
         $deleteForm = $this->createDeleteForm($product);
         $em=$this->getDoctrine()->getManager();
         
-        $motors = $em->getRepository('BackendBundle:Motor')->findAll();
-        $escs = $em->getRepository('BackendBundle:Esc')->findAll();
-        $batteries = $em->getRepository('BackendBundle:Battery')->findAll();
-        $bodies = $em->getRepository('BackendBundle:Body')->findAll();
-        $kits = $em->getRepository('BackendBundle:Kit')->findAll();
-        $oils = $em->getRepository('BackendBundle:Oil')->findAll();
-        $tires = $em->getRepository('BackendBundle:Tires')->findAll();
+        $second_category_details = $this->getSubCategories();
+        
         $editForm = $this->createForm('BackendBundle\Form\ProductType', $product);
 
         $editForm->handleRequest($request);
@@ -113,13 +111,7 @@ class ProductController extends Controller
 
         return $this->render('product/edit.html.twig', array(
             'product' => $product,
-            'motors'=> $motors,
-            'escs' => $escs,
-            'batteries' => $batteries,
-            'bodies' => $bodies,
-            'kits' => $kits,
-            'oils' => $oils,
-            'tires' => $tires,
+            'second_category_details' => $second_category_details,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'motor_form' => $motorForm->createView(),
@@ -161,5 +153,22 @@ class ProductController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    private function getSubCategories(){
+
+        $em=$this->getDoctrine()->getManager();
+        $ret = [];
+        $ret['motors'] = $em->getRepository('BackendBundle:Motor')->findAll();
+        $ret['escs'] = $em->getRepository('BackendBundle:Esc')->findAll();
+        $ret['batteries'] = $em->getRepository('BackendBundle:Battery')->findAll();
+        $ret['bodies'] = $em->getRepository('BackendBundle:Body')->findAll();
+        $ret['kits'] = $em->getRepository('BackendBundle:Kit')->findAll();
+        $ret['oils'] = $em->getRepository('BackendBundle:Oil')->findAll();
+        $ret['tires'] = $em->getRepository('BackendBundle:Tires')->findAll();
+
+        return $ret;
+
     }
 }

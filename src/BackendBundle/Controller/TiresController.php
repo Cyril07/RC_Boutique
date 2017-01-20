@@ -82,7 +82,7 @@ class TiresController extends Controller
      */
     public function editAction(Request $request, Tires $tires)
     {
-        $deleteForm = $this->createDeleteForm($tire);
+        $deleteForm = $this->createDeleteForm($tires);
         $editForm = $this->createForm('BackendBundle\Form\TiresType', $tires);
         $editForm->handleRequest($request);
 
