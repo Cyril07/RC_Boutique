@@ -4,6 +4,7 @@
    
     <div class="second_category" id="motor" style="border:1px solid red">
         <table class="table">
+            <h2> Moteur </h2>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -37,8 +38,9 @@
         </table>
     </div>
 
-    <div class="second_category" id="esc" style="border:1px solid blue; height:150px">
+    <div class="second_category" id="esc" style="border:1px solid blue">
         <table class="table">
+            <h2> Variateur </h2>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -71,9 +73,10 @@
         </table>
     </div>
 
-    <div class="second_category" id="battery" style="border:1px solid yellow; height:150px">
+    <div class="second_category" id="battery" style="border:1px solid yellow">
         <table class="table">
             <thead>
+            <h2> Batteries </h2>
                 <tr>
                     <th>Id</th>
                     <th>Capacité</th>
@@ -103,9 +106,10 @@
         </table>
     </div>
 
-    <div class="second_category" id="body" style="border:1px solid purple; height:150px">
+    <div class="second_category" id="body" style="border:1px solid purple">
         <table class="table">
             <thead>
+            <h2> Carrosserie </h2>
                 <tr>
                     <th>Id</th>
                     <th>Paint</th>
@@ -133,9 +137,10 @@
         </table>
     </div>
 
-    <div class="second_category" id="kit" style="border:1px solid pink; height:150px">
-        <table class="table active">
+    <div class="second_category" id="kit" style="border:1px solid pink">
+        <table class="table">
             <thead>
+            <h2> Kit </h2>
                 <tr>
                     <th>Id</th>
                     <th>Kit Completness</th>
@@ -145,7 +150,7 @@
                 </tr>
             </thead>
             {% for kit in second_category_details.kits %}
-                <tr class="kit" kitId= {{ kit.id }}>
+                <tr class="kit active" kitId= {{ kit.id }}>
                     <td><a href="{{ path('kit_show', { 'id': kit.id }) }}">{{ kit.id }}</a></td>
                     <td>{% if kit.kitCompletness %}Yes{% else %}No{% endif %}</td>
                     <td>{% if kit.terrain %}Yes{% else %}No{% endif %}</td>
@@ -165,9 +170,10 @@
         </table>
     </div>
 
-    <div class="second_category" id="oil" style="border:1px solid black; height:150px">
+    <div class="second_category" id="oil" style="border:1px solid black">
         <table>
             <thead>
+            <h2> Huile </h2>
                 <tr>
                     <th>Id</th>
                     <th>Wt</th>
@@ -193,9 +199,10 @@
         </table>
     </div>
 
-    <div class="second_category" id="tires" style="border:1px solid green; height:150px">
+    <div class="second_category" id="tires" style="border:1px solid greenx">
         <table>
             <thead>
+            <h2> Pneus </h2>
                 <tr>
                     <th>Id</th>
                     <th>Front Wheel Position</th>
@@ -229,8 +236,54 @@
         <h1>Product edit</h1>
 
         {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
+            <div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Ref</th>
+                            <td>{{ form_widget (edit_form.ref) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ form_widget (edit_form.price) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lib</th>
+                            <td>{{ form_widget (edit_form.lib) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Brand</th>
+                            <td>{{ form_widget (edit_form.brand) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{ form_widget (edit_form.category) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Second_category</th>
+                            <td>{{ form_widget (edit_form.secondCategory) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Picture</th>
+                            <td>{{ form_widget (edit_form.picture) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="visibility:hidden">
+                {{ form_widget (edit_form.motor) }}
+                {{ form_widget (edit_form.esc) }}
+                {{ form_widget (edit_form.battery) }}
+                {{ form_widget (edit_form.body) }}
+                {{ form_widget (edit_form.kit) }}
+                {{ form_widget (edit_form.oil) }}
+                {{ form_widget (edit_form.tires) }}
+            </div>
+
+
             <input type="submit" value="Edit" />
+
         {{ form_end(edit_form) }}
 
         <ul>
@@ -243,6 +296,7 @@
                 {{ form_end(delete_form) }}
             </li>
         </ul>
+        
         
 {% endblock %}
 

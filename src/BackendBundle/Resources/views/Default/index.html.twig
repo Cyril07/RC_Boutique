@@ -2,6 +2,21 @@
 
 {% block body %}
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li role="presentation">
+                    <a href="{{ path('backend_default_index') }}"> Menu Admin </a>
+                </li>
+                <li role="presentation">
+                    <a href="{{ path('frontend_default_index') }}"> Menu Front </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="jumbotron">
     <h1>Page d'Administration</h1>
 </div>

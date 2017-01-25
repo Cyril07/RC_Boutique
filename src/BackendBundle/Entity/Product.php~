@@ -58,6 +58,13 @@ class Product
     private $secondCategory;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Motor")
      */
     private $motor;
@@ -413,5 +420,29 @@ class Product
     public function getTires()
     {
         return $this->tires;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Product
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

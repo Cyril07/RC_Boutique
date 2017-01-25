@@ -5,7 +5,7 @@ namespace BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use BackendBundle\Form\MotorType;
 use BackendBundle\Form\EscType;
 use BackendBundle\Form\BatteryType;
@@ -29,13 +29,14 @@ class ProductType extends AbstractType
             ->add('brand')
             ->add('category')
             ->add('secondCategory')
-            ->add('motor', HiddenType::class)
-            ->add('esc', HiddenType::class)
-            ->add('battery', HiddenType::class)
-            ->add('body', HiddenType::class)
-            ->add('kit', HiddenType::class)
-            ->add('oil', HiddenType::class)
-            ->add('tires', HiddenType::class)
+            ->add('picture', FileType::class)
+            ->add('motor')
+            ->add('esc')
+            ->add('battery')
+            ->add('body')
+            ->add('kit')
+            ->add('oil')
+            ->add('tires')
         ;
         //$builder->add('motor', MotorType::class);
     }

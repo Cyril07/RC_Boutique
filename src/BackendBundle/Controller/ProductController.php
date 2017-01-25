@@ -40,17 +40,33 @@ class ProductController extends Controller
      */
     public function newAction(Request $request)
     {
-        $product = new Product();
-        $form = $this->createForm('BackendBundle\Form\ProductType', $product);
-        $form->handleRequest($request);
 
+        $product = new Product();
+
+        //$product->getEsc();die('pter');
+
+        $form = $this->createForm('BackendBundle\Form\ProductType', $product);
         $second_category_details = $this->getSubCategories();
+        //echo ('<pre>');var_dump($request->request);
+
+        //die('tata');
+        $form->handleRequest($request);
+        //die('toto');
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //die("cyril");
+            $file = $product->getPicture();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('pictures_directory'),
+                $fileName
+            );
+            $product->setBrochure($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush($product);
 
+            //return $this->redirect($this->generateUrl('app_product_list'))
             return $this->redirectToRoute('product_show', array('id' => $product->getId()));
         }
 
