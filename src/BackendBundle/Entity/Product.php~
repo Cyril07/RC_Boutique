@@ -58,9 +58,13 @@ class Product
     private $secondCategory;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture_file;
+
+    /**
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
 

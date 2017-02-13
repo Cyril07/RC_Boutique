@@ -3,6 +3,7 @@
 namespace BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -29,7 +30,7 @@ class Product
     private $ref;
 
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Column(name="price", type="decimal")
      */
@@ -58,11 +59,15 @@ class Product
     private $secondCategory;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
      *
-     * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;
+
+    /**
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     */
+    private $picture_file;
 
     /**
      * @ORM\ManyToOne(targetEntity="Motor")
@@ -444,5 +449,21 @@ class Product
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     */
+    public function setPictureFile($picture_file = null)
+    {
+        $this->picture_file = $picture_file;
+
+        return $this;
+    }
+
+    /**
+     */
+    public function getPictureFile()
+    {
+        return $this->picture_file;
     }
 }

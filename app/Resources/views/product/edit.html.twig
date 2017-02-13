@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'BackendBundle::backend.html.twig' %}
 
 {% block body %}
-   
+    {{ parent() }}
     <div class="second_category" id="motor" style="border:1px solid red">
         <table class="table">
             <h2> Moteur </h2>
@@ -235,6 +235,7 @@
     </div>
         <h1>Product edit</h1>
 
+        <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" width="100px"/>
         {{ form_start(edit_form) }}
             <div>
                 <table class="table">
@@ -265,7 +266,7 @@
                         </tr>
                         <tr>
                             <th>Picture</th>
-                            <td>{{ form_widget (edit_form.picture) }}</td>
+                            <td>{{ form_widget (edit_form.picture_file) }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Product controller.
@@ -49,19 +51,22 @@ class ProductController extends Controller
         $second_category_details = $this->getSubCategories();
         //echo ('<pre>');var_dump($request->request);
 
+
         //die('tata');
         $form->handleRequest($request);
         //die('toto');
 
         if ($form->isSubmitted() && $form->isValid()) {
             //die("cyril");
-            $file = $product->getPicture();
+            $file = $product->getPictureFile();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
+            $product->getPictureFile()->move(
                 $this->getParameter('pictures_directory'),
                 $fileName
             );
-            $product->setBrochure($fileName);
+
+            $product->setPicture($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush($product);
@@ -101,13 +106,26 @@ class ProductController extends Controller
      */
     public function editAction(Request $request, Product $product)
     {
+        $fs = new Filesystem;
+        $oldProductFileName = $product->getPicture();
+        //Je vérifie que le nom de fichier existe dans la base de données
+        if ($product->getPicture()){
+        //S'il existe je crée l'objet correspondant à l'image
+            $product->setPictureFile(
+                new File($this->getParameter('pictures_directory').'/'.$product->getPicture())
+            );
+            
+        }
+        //S'il n'existe pas...
+        
+
         $deleteForm = $this->createDeleteForm($product);
         $em=$this->getDoctrine()->getManager();
         
         $second_category_details = $this->getSubCategories();
-        
-        $editForm = $this->createForm('BackendBundle\Form\ProductType', $product);
+       
 
+        $editForm = $this->createForm('BackendBundle\Form\ProductType', $product);
         $editForm->handleRequest($request);
 
         $motorForm = $this->createForm('BackendBundle\Form\MotorType',$product->getMotor());
@@ -119,7 +137,20 @@ class ProductController extends Controller
         $tiresForm = $this->createForm('BackendBundle\Form\TiresType',$product->getTires());
 
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) 
+        {
+            //Suppression de l'ancienne image.
+            $fs->remove($this->getParameter('pictures_directory').'/'.$oldProductFileName);
+
+            $fileName = md5(uniqid()).'.'.$product->getPictureFile()->guessExtension();
+            $product->getPictureFile()->move(
+                $this->getParameter('pictures_directory'),
+                $fileName
+            );
+        
+
+            $product->setPicture($fileName);
+            $em->persist($product);
             $em->flush();
 
             return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
@@ -185,6 +216,5 @@ class ProductController extends Controller
         $ret['tires'] = $em->getRepository('BackendBundle:Tires')->findAll();
 
         return $ret;
-
     }
 }

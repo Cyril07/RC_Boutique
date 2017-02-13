@@ -29,7 +29,7 @@ class ProductType extends AbstractType
             ->add('brand')
             ->add('category')
             ->add('secondCategory')
-            ->add('picture', FileType::class)
+            ->add('picture_file', FileType::class, array('label' => 'Image'))
             ->add('motor')
             ->add('esc')
             ->add('battery')
@@ -46,8 +46,9 @@ class ProductType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        
         $resolver->setDefaults(array(
-            'data_class' => 'BackendBundle\Entity\Product'
+            'data_class' => \BackendBundle\Entity\Product::class,
         ));
     }
 
