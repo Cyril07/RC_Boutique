@@ -3,21 +3,33 @@
 {% block header %}
 
 <style>
-	.style_menu{
-		font-size: 18px;
-		color: white;
-		font-weight: bold;
-	}
+
 	.container{
 		width: 100%;
 	}
+	#title{
+		color: #2e75b5;
+		font-weight: bold;
+		text-align: left;
+	}
 	#header {
-		height: 100px;
+		height: 90px;
+	}
+
+	#header h1{
+		margin: 0px;
 	}
 	#header_left{		
 		/*background: green;*/
+		display: flex;
+		align-items: flex-start;
 		height: inherit;
+	}
+	#header_left img{
 
+	}
+	#header_left a{
+		text-decoration: none;		
 	}
 	#header_right{
 		display: flex;
@@ -28,91 +40,63 @@
 	}
 	#header_low{
 		background: #2e75b5;
-
+		display: flex;
 	}
 	#header_low a{
 		color: white;
 		font-weight: bold;
 	}
+	#header_low a:hover{
+		background: #2e3a47;		
+	}
 	#user_menu{
 		/*background: yellow;*/
 		display: flex;
 		justify-content: space-around;		
-		height: 40px;
 		position: relative;
-		width: 300px;
+		width: 320px;
 		float: right;
-		/*top: -20px;*/
-	}
-	#search{
-		/*background: black;*/
-		height: 50px;
-		position: relative;
-		top: 0px;
-	}
-	#title{
-		color: #2e75b5;
-		font-weight: bold;
-	}
-	#input_search{
-		width: 400px;
+		margin: 0px;		
 	}
 	.dropdown-menu{
 		top: 65%;
 	}
 	.container{
-		padding:0 0;
+		padding:0;
+	}
+	#search{
+		width: 100%;
 	}
 
 
 </style>
 
-	<div id="header">
+	<div id="header" class="row">
 	
-		<div id="header_left" class="col-lg-6">
-			<h1 id="title"> RC Electric Car
-				<img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/>
-			</h1>
-
+		<div id="header_left" class="col-lg-5">
+			<a href="/RC_Boutique/web/app_dev.php/">
+				<h1 id="title"> RC Electric Car <img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/></h1>				
+			</a>
 		</div>
 
-		<div id="header_right" class="col-lg-6">
+		<div id="header_right" class="col-lg-7">
 
-			<div id="user_menu">
-				<div>
+			<div id="user_menu" class="container">
+				<ul class="nav navbar-nav">
 					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Souhait </button>
-				</div>
-				<div>
+				
 					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button>
-				</div>
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Compte 
-				  	<span class="caret"></span></button>
-				  	<ul class="dropdown-menu">
-				    	<li><a href="#">Mon Compte</a></li>
-				    	<li><a href="#">Mon Historique</a></li>
-				    	<li><a href="#">Mes Commandes</a></li>
-				  	</ul>
-				</div>				
-			</div>
-			
-			<div id="search">
 
-				<form class="navbar-form navbar-left">
-        			<div class="form-group">
-        				<input id="input_search" type="text" class="form-control" placeholder="Recherche par mot clés ou numéro de produit">
-        			</div>
-        			<button type="submit" class="btn btn-default">
-        				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        			</button>
-    			</form>
-
+					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Compte </button>
+				</ul>	
+						
 			</div>
 		</div>		
 	</div>
-	<div id="header_low" class="col-lg-12">
+
+	<div id="header_low" class="row co-lg-12">
 		<nav class="horizontal_menu">
-			<div class="container">
+			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 	                <li role="presentation">
 	                    <a href=""> Kits </a>
@@ -126,10 +110,19 @@
 	               	<li role="presentation">
 	                    <a href=""> Consommables </a>
 	                </li>
+	                <li>
+						<form class="navbar-form navbar-left" role="search">
+		                	<div id="search" class="form-group">
+	    						<input type="text" class="form-control" placeholder="Recherche par mot clés ou numéro de produit">
+	    						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+	  						</div>
+	  					</form>
+  					</li>                
         		</ul>
 			</div>
-		</nav>
+		</nav>		
 	</div>
+
 	
 
 
