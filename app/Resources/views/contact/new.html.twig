@@ -1,0 +1,62 @@
+{% extends 'FrontendBundle:Layout:frontend.html.twig' %}
+
+{% block body %}
+
+<style>
+
+.jumbotron h1{
+    color: #024d90;
+}
+.jumbotron h2{
+    color: #2e75b5;
+}
+
+.jumbotron p{
+    font-size: 17px;
+    color: #2e75b5;
+}
+
+.jumbotron{
+    margin: 30px 30px;
+}
+
+.required{
+    color: #2e75b5;
+}
+
+#backendbundle_contact{
+    color: #2e75b5;
+    font-weight: normal;
+}
+#backendbundle_contact_name, #backendbundle_contact_mail, #backendbundle_contact_message{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#backendbundle_contact label{
+    display: block;
+}
+
+input{
+    color: #2e75b5;    
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px
+}
+
+</style>
+
+<div class="jumbotron">
+    
+    <h1> Contact </h1>
+
+    <h2><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>Téléphone : 06 34 53 36 15 </h2>
+
+    {{ form_start(form) }}        
+        {{ form_widget(form) }}
+        <input type="submit" value="Envoie" />
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

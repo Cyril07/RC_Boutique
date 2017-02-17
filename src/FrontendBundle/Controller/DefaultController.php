@@ -4,6 +4,10 @@ namespace FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FrontendBundle\Entity\Contact;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class DefaultController extends Controller
 {
@@ -20,7 +24,7 @@ class DefaultController extends Controller
 	 */
 	public function aboutAction()
 	{
-		return $this->render('FrontendBundle:Layout:about_us.html.twig');
+		return $this->render('FrontendBundle::about_us.html.twig');
 	}
 
 	/**
@@ -28,15 +32,7 @@ class DefaultController extends Controller
 	 */
 	public function tofAction()
 	{
-		return $this->render('FrontendBundle:Layout:terms_of_sales.html.twig');
-	}
-
-	/**
-	 * @Route("/contact")
-	 */
-	public function contactAction ()
-	{
-		return $this->render('FrontendBundle:Layout:contact.html.twig');
+		return $this->render('FrontendBundle::terms_of_sales.html.twig');
 	}
 
 	/**
@@ -44,6 +40,14 @@ class DefaultController extends Controller
 	 */
 	public function shippingAction ()
 	{
-		return $this->render('FrontendBundle:Layout:shipping.html.twig');
+		return $this->render('FrontendBundle::shipping.html.twig');
+	}
+
+	/**
+	 * @Route("/confirm-contact")
+	 */
+	public function confirm_contact ()
+	{
+		return $this->render('FrontendBundle::confirm_contact.html.twig');
 	}
 }
