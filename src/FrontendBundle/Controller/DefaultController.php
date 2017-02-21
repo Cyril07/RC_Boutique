@@ -4,9 +4,11 @@ namespace FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use FrontendBundle\Entity\Contact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use BackendBundle\Entity\Product;
+
+
 
 
 class DefaultController extends Controller
@@ -49,5 +51,18 @@ class DefaultController extends Controller
 	public function confirm_contact ()
 	{
 		return $this->render('FrontendBundle::confirm_contact.html.twig');
+	}
+
+	/**
+	 * @Route("/electronique")
+	 */
+	public function page_electronicsAction ()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$products = $em->getRepository('BackendBundle:Product')->findAll();
+		
+		return $this->render('FrontendBundle::page_electronics.html.twig', array(
+            'products' => $products,
+        ));
 	}
 }

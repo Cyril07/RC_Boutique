@@ -65,6 +65,13 @@ class Product
     private $picture;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
      */
     private $picture_file;
@@ -465,5 +472,29 @@ class Product
     public function getPictureFile()
     {
         return $this->picture_file;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

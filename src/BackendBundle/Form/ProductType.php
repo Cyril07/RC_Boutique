@@ -30,6 +30,7 @@ class ProductType extends AbstractType
             ->add('category')
             ->add('secondCategory')
             ->add('picture_file', FileType::class, array('label' => 'Image'))
+            ->add('description')
             ->add('motor')
             ->add('esc')
             ->add('battery')

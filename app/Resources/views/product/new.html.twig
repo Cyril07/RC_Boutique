@@ -1,4 +1,4 @@
-{% extends 'BackendBundle::backend.html.twig' %}
+{% extends 'BackendBundle:Layout:backend.html.twig' %}
 
 {% block body %}
     {{ parent() }}
@@ -267,6 +267,10 @@
                         <tr>
                             <th>Picture</th>
                             <td>{{ form_widget (form.picture_file) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ form_widget (form.description) }}</td>
                         </tr>
                     </tbody>
                 </table>

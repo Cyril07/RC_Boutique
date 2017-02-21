@@ -65,6 +65,13 @@ class Product
     private $picture;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
      */
     private $picture_file;
