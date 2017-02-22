@@ -48,7 +48,7 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/confirm-contact")
 	 */
-	public function confirm_contact ()
+	public function confirm_contactAction ()
 	{
 		return $this->render('FrontendBundle::confirm_contact.html.twig');
 	}
@@ -63,6 +63,17 @@ class DefaultController extends Controller
 		
 		return $this->render('FrontendBundle::page_electronics.html.twig', array(
             'products' => $products,
+        ));
+	}
+
+	/**
+	 *@Route("/{lib}/{id}", name="product_page")
+	 *@Method("GET")
+	 */
+	public function product_pageAction(Product $product)
+	{			
+		return $this->render('FrontendBundle::product_page.html.twig', array(
+            'product' => $product,
         ));
 	}
 }

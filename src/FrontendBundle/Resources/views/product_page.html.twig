@@ -1,0 +1,77 @@
+{% extends 'FrontendBundle:Layout:frontend.html.twig' %}
+
+{% block body %}
+<style>
+
+    #product_page{
+        color: #2e75b5;        
+    }
+    #product_image{
+        text-align: center
+    }
+    #product_info{
+        font-size: 16px;
+    }
+    #product_specification {
+        color: #2e75b5;
+        font-size: 16px;
+    }
+
+</style>
+
+<div id="product_page">
+    <div id ="product_image" class="col-lg-6" >
+        <h1>{{ product.lib }}</h1>
+        <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" width="350px"/>
+    </div>
+
+    <div id="product_info" class="col-lg-6">
+        <h2> Produit </h2>
+        <p> Marque : {{ product.brand }} </p>   
+        <p> Référence : {{ product.ref }} </p>        
+        <p> Prix : <b>{{ product.price }}€</b> </p>
+        <p> Description : {{ product.description }} </p>        
+    </div>
+</div>
+
+<div id="product_specification">
+    <h2> Spécifications </h2>
+
+    {% if product.battery %}
+        <p> Capacité : {{ product.battery.capacity }} </p>
+        <p> Nombre de cellules : {{ product.battery.cellCount }}S </p>
+        <p> Type de batterie : {{ product.battery.batteryType }}</p>
+    {% endif %}
+
+    {% if product.body %}
+        <p> Echelle : {{ product.body.scale }} </p>
+        <p> Paint : {% if product.body.paint == 1 %} Oui {% else %} Non {% endif %} </p>
+    {% endif %}
+
+    {% if product.esc %}
+        <p> Echelle : {{ product.esc.scale }} </p>
+        <p> Puissance : {{ product.esc.power }}W </p>
+        <p> Possibilité de sensor : {% if product.esc.sensored == 1 %} Oui {% else %} Non {% endif %}</p> 
+        <p> Waterproof : {% if product.esc.waterproof == 1 %} Oui {% else %} Non {% endif %} </p>
+    {% endif %}
+
+    {% if product.kit %}
+        <p> Echelle : {{ product.kit.scale }} </p>
+        <p> Type de véhicule : {{ product.kit.vehiculeType }} </p>
+        <p> Roue motrice : {% if product.kit.driveTrainFull == 1 %} 4x4 {% else %} 4x2 {% endif %} </p>
+        <p> Prêt à roulé : {% if product.kit.kitCompletness == 1 %} Oui {% else %} Non {% endif %} </p>
+        <p> Type : {{ product.kit.terrain }}</p>
+    {% endif %}
+
+    {% if product.motor %}
+        <p> Echelle : {{ product.motor.scale }} </p>
+        <p> Type de sensor : {% if product.motor.sensored == 1 %} Avec sensor {% else %} Sans sensor {% endif %}</p>
+        <p> Type de moteur : {% if product.motor.brushless == 1 %} Brushless {% else %} Brushed {% endif %} </p>        
+        <p> Tour : {{ product.motor.motorTurns }} </p>
+    {% endif %}
+
+
+
+</div>
+
+{% endblock %}

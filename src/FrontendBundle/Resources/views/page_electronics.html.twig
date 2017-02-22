@@ -3,29 +3,63 @@
 {% block body %}
 
 <style>
+
   #list_of_product{
-    display: block;
+    margin: 30px 0px;
   }
+  #list_of_product a{
+    text-decoration: none;
+    font-size: 20px;    
+  }
+  #electronic_header h1{
+    color: #2e75b5;
+    text-decoration: underline;
+    font-size: 35px;
+  }
+  #electronic_header p{
+    color: #333;   
+  }
+  #electronic_header img{
+    float: right;
+    position: absolute;
+    margin-top : -75px;
+    margin-left : 1000px;
+  }
+  #list_of_product p{
+    text-align: center;
+    font-size: 18px;
+  }
+
 
 </style>
 
+  <div id="electronic_header" class="jumbotron">
+    
+    <h1>Electroniques</h1>
+    <img src="{{ asset( 'pictures/motor_orion.png') }}" style="height: 150px"alt="...">
+    <p> Variateur, moteur, servo </p>    
 
-
-<div id="list_of_product"class="row">
-{% for product in products %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" alt="...">
-      <div class="caption">        
-        <h3>{{ product.lib }}</h3>        
-        <p>{{ product.description }} </p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
   </div>
-{% endfor %}
+
+  <div id="list_of_product"class="row">
+  {% for product in products %}
+
+    <div id="item_of_product" class="col-lg-3">
+      <a href="{{ path('product_page', { 'id': product.id,'lib': product.lib }) }}">
+        <div class="thumbnail">
+          <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" style="height: 150px"alt="...">
+          <div class="caption">        
+            <h3>{{ product.lib }}</h3>        
+            <p>{{ product.price }}€</p>
+            <p><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></p>
+          </div>
+        </div>
+      </a>    
+    </div>
+
+  {% endfor %}
+  </div>
+
 </div>
-
-
 
 {% endblock %}
