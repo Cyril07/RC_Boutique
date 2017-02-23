@@ -9,6 +9,8 @@
             <tr>
                 <th>Id</th>
                 <th>Frontwheelposition</th>
+                <th>Scale</th>
+                <th>Color</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,6 +19,8 @@
             <tr>
                 <td><a href="{{ path('tires_show', { 'id': tire.id }) }}">{{ tire.id }}</a></td>
                 <td>{% if tire.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
+                <td>{{ tire.scale }}</td>
+                <td> {{ tire.tiresColor }} </td>
                 <td>
                     <ul>
                         <li>

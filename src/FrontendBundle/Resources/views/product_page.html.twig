@@ -4,7 +4,8 @@
 <style>
 
     #product_page{
-        color: #2e75b5;        
+        color: #2e75b5;
+        margin: 20px 10px;
     }
     #product_image{
         text-align: center
@@ -15,6 +16,7 @@
     #product_specification {
         color: #2e75b5;
         font-size: 16px;
+        float: right;
     }
 
 </style>
@@ -34,7 +36,7 @@
     </div>
 </div>
 
-<div id="product_specification">
+<div id="product_specification" class="col-lg-6">
     <h2> Spécifications </h2>
 
     {% if product.battery %}
@@ -50,7 +52,7 @@
 
     {% if product.esc %}
         <p> Echelle : {{ product.esc.scale }} </p>
-        <p> Puissance : {{ product.esc.power }}W </p>
+        <p> Puissance : {{ product.esc.power }} </p>
         <p> Possibilité de sensor : {% if product.esc.sensored == 1 %} Oui {% else %} Non {% endif %}</p> 
         <p> Waterproof : {% if product.esc.waterproof == 1 %} Oui {% else %} Non {% endif %} </p>
     {% endif %}
@@ -60,7 +62,7 @@
         <p> Type de véhicule : {{ product.kit.vehiculeType }} </p>
         <p> Roue motrice : {% if product.kit.driveTrainFull == 1 %} 4x4 {% else %} 4x2 {% endif %} </p>
         <p> Prêt à roulé : {% if product.kit.kitCompletness == 1 %} Oui {% else %} Non {% endif %} </p>
-        <p> Type : {{ product.kit.terrain }}</p>
+        <p> Type : {% if product.kit.terrain == 1 %} Tout-terrain {% else %} Piste {% endif %}</p>
     {% endif %}
 
     {% if product.motor %}
@@ -70,7 +72,15 @@
         <p> Tour : {{ product.motor.motorTurns }} </p>
     {% endif %}
 
+    {% if product.tires %}
+        <p> Echelle : {{ product.tires.scale }} </p>
+        <p> Pneus avant: {% if product.tires.frontWheelPosition == 1 %} Oui {% else %} Non {% endif %}</p>
+        <p> Couleur : {{ product.tires.tiresColor }} </p>
+    {% endif %}
 
+    {% if product.oil %}
+        <p> Viscosité : {{ product.oil.wt }} </p>             
+    {% endif %}
 
 </div>
 

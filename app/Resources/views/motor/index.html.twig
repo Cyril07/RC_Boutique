@@ -10,6 +10,8 @@
                 <th>Id</th>
                 <th>Sensored</th>
                 <th>Brushless</th>
+                <th>Scale</th>
+                <th>Turns</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,6 +21,8 @@
                 <td><a href="{{ path('motor_show', { 'id': motor.id }) }}">{{ motor.id }}</a></td>
                 <td>{% if motor.sensored %}Yes{% else %}No{% endif %}</td>
                 <td>{% if motor.brushless %}Yes{% else %}No{% endif %}</td>
+                <td> {{ motor.scale }}</td>
+                <td> {{ motor.motorTurns }} </td>
                 <td>
                     <ul>
                         <li>

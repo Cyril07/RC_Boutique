@@ -67,11 +67,12 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 *@Route("/{lib}/{id}", name="product_page")
+	 *@Route("/produit/{id}", name="product_page")
 	 *@Method("GET")
 	 */
 	public function product_pageAction(Product $product)
-	{			
+	{	
+
 		return $this->render('FrontendBundle::product_page.html.twig', array(
             'product' => $product,
         ));

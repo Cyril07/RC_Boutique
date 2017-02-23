@@ -172,7 +172,7 @@
     </div>
 
     <div class="second_category" id="oil" style="border:1px solid black">
-        <table>
+        <table class="table">
             <thead>
             <h2> Huile </h2>
                 <tr>
@@ -201,7 +201,7 @@
     </div>
 
     <div class="second_category" id="tires" style="border:1px solid green">
-        <table>
+        <table class="table">
             <thead>
             <h2> Pneus </h2>
                 <tr>
@@ -217,7 +217,7 @@
                     <td><a href="{{ path('tires_show', { 'id': tire.id }) }}">{{ tire.id }}</a></td>
                     <td>{% if tire.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
                     <td>{{ tire.scale }}</td>
-                    <td>{{tire.tiresColor}}</td>
+                    <td>{{ tire.tiresColor }}</td>
                     <td>
                         <ul>
                             <li>

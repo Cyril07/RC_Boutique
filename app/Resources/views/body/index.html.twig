@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Paint</th>
+                <th>Scale</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td><a href="{{ path('body_show', { 'id': body.id }) }}">{{ body.id }}</a></td>
                 <td>{% if body.paint %}Yes{% else %}No{% endif %}</td>
+                <td>{{ body.scale }}</td>
                 <td>
                     <ul>
                         <li>

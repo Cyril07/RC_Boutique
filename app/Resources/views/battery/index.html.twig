@@ -9,6 +9,8 @@
             <tr>
                 <th>Id</th>
                 <th>Capacity</th>
+                <th>Cell Count</th>
+                <th>Battery Type</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,6 +19,8 @@
             <tr>
                 <td><a href="{{ path('battery_show', { 'id': battery.id }) }}">{{ battery.id }}</a></td>
                 <td>{{ battery.capacity }}</td>
+                <td>{{ battery.cellCount }}</td>
+                <td>{{ battery.batteryType }}</td>
                 <td>
                     <ul>
                         <li>
