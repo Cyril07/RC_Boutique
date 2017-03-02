@@ -1,0 +1,72 @@
+{% extends 'FrontendBundle:Layout:frontend.html.twig' %}
+
+{% block body %}
+
+<style>
+
+  #list_of_product{
+    margin: 30px 0px;
+  }
+  #list_of_product a{
+    text-decoration: none;
+    font-size: 20px;    
+  }
+  #kit_header h1{
+    color: #2e75b5;
+    text-decoration: underline;
+    font-size: 35px;
+  }
+  #kit_header p{
+    color: #333;   
+  }
+  #kit_header img{
+    float: right;
+    position: absolute;
+    margin-top : -75px;
+    margin-left : 1000px;
+  }
+  #list_of_product p{
+    text-align: center;
+    font-size: 18px;
+  }
+  a.btn.btn-primary{
+    margin-left: 10px;
+  }
+  h3{
+    height: 80px;
+    text-align: center;
+  }
+
+
+</style>
+
+  <div id="kit_header" class="jumbotron">
+    
+    <h1>Kits</h1>
+    <img src="{{ asset( 'pictures/22-4.png') }}" style="height: 150px"alt="...">
+    <p> Prêt à rouler, à monter... </p>    
+
+  </div>
+
+  <div id="list_of_product"class="row">
+  {% for product in products %}
+
+    <div id="item_of_product" class="col-lg-3">
+      <a href="{{ path('product_page', { 'slug': product.slug }) }}">
+        <div class="thumbnail">
+          <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" style="height: 150px"alt="...">
+          <div class="caption">        
+            <h3>{{ product.lib }}</h3>        
+            <p>{{ product.price }}€</p>
+            <p><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></p>
+          </div>
+        </div>
+      </a>    
+    </div>
+
+  {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

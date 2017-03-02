@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Img</th>                
                 <th>Ref</th>
                 <th>Price</th>
                 <th>Lib</th>
@@ -16,18 +17,19 @@
         </thead>
         <tbody>
         {% for product in products %}
-            <tr>
+            <tr>                
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td><img src="{{ asset('uploads/pictures/'~product.picture) }}" width="100px"/></td>
                 <td>{{ product.ref }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.lib }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                            <a href="{{ path('product_show', { 'id': product.id }) }}"><span class="glyphicon glyphicon-eye-open"></span>show</a>
                         </li>
                         <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}"><span class="glyphicon glyphicon-pencil"></span>edit</a>
                         </li>
                     </ul>
                 </td>

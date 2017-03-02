@@ -59,15 +59,28 @@ class DefaultController extends Controller
 	public function page_electronicsAction ()
 	{
 		$em = $this->getDoctrine()->getManager();
-		$products = $em->getRepository('BackendBundle:Product')->findAll();
+		$products = $em->getRepository('BackendBundle:Product')->findByCategory('1');
 		
-		return $this->render('FrontendBundle::page_electronics.html.twig', array(
+		return $this->render('FrontendBundle::electronics_page.html.twig', array(
             'products' => $products,
         ));
 	}
 
 	/**
-	 *@Route("/produit/{id}", name="product_page")
+	 * @Route("/kit")
+	 */
+	public function page_kitsAction ()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$products = $em->getRepository('BackendBundle:Product')->findByCategory('2');
+		
+		return $this->render('FrontendBundle::kits_page.html.twig', array(
+            'products' => $products,
+        ));
+	}
+
+	/**
+	 *@Route("/product/{slug}", name="product_page")
 	 *@Method("GET")
 	 */
 	public function product_pageAction(Product $product)

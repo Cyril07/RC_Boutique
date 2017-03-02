@@ -4,6 +4,7 @@ namespace BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Product
@@ -42,6 +43,12 @@ class Product
      * @ORM\Column(name="lib", type="string", length=255)
      */
     private $lib;
+
+    /**
+     * @Gedmo\Slug(fields={"lib", "ref"})
+     * @ORM\Column(length=128, unique=false)
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="Brand")
@@ -472,5 +479,29 @@ class Product
     public function getPictureFile()
     {
         return $this->picture_file;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

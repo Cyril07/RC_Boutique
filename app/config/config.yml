@@ -8,12 +8,12 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en    
+    locale: fr    
     pictures_directory: '%kernel.root_dir%/../web/uploads/pictures'
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:     ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -64,6 +64,14 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+
+# Stof\DoctrineExtensionsBundle configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+            
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -77,3 +85,6 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: BackendBundle\Entity\User
+    from_email:
+        address: "cy.lenglet@laposte.net"
+        sender_name: "RC_Boutique"

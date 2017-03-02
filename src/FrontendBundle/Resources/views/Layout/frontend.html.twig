@@ -15,7 +15,6 @@
 	#header {
 		height: 90px;
 	}
-
 	#header h1{
 		margin: 0px;
 	}
@@ -40,8 +39,6 @@
 		display: flex;
 	}
 	#header_low a{
-
-
 		color: white;
 		font-weight: bold;
 	}
@@ -72,9 +69,9 @@
 
 
 </style>
-
-	<div id="header" class="row">
 	
+	<div id="header" class="row">
+		
 		<div id="header_left" class="col-lg-5">
 			<a href="/RC_Boutique/web/app_dev.php/">
 				<h1 id="title"> RC Electric Car <img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/></h1>				
@@ -89,7 +86,12 @@
 				
 					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button>
 
-					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Compte </button>
+					{% if is_granted('ROLE_USER') %}
+						<a href="/RC_Boutique/web/app_dev.php/logout"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Deconnexion </button></a>
+    				{% else %}
+    					<a href="/RC_Boutique/web/app_dev.php/login"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion </button></a>
+					{% endif %}
+					
 				</ul>	
 						
 			</div>
@@ -101,7 +103,7 @@
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
 		                <li role="presentation">
-		                    <a href=""> Kits </a>
+		                    <a href="/RC_Boutique/web/app_dev.php/kit"> Kits </a>
 		                </li>
 		                <li role="presentation">
 		                    <a href="/RC_Boutique/web/app_dev.php/electronique"> Electroniques </a>

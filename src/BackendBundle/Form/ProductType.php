@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use BackendBundle\Form\MotorType;
 use BackendBundle\Form\EscType;
 use BackendBundle\Form\BatteryType;
@@ -29,8 +30,8 @@ class ProductType extends AbstractType
             ->add('brand')
             ->add('category')
             ->add('secondCategory')
-            ->add('picture_file', FileType::class, array('label' => 'Image'))
-            ->add('description')
+            ->add('picture_file', FileType::class, array('label' => 'Image', 'required' => false ))
+            ->add('description', TextareaType::class, array('attr' => array('cols' => '75', 'rows' => '8')))
             ->add('motor')
             ->add('esc')
             ->add('battery')

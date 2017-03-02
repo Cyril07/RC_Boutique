@@ -4,6 +4,7 @@ namespace BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Product
@@ -44,6 +45,12 @@ class Product
     private $lib;
 
     /**
+     * @Gedmo\Slug(fields={"lib", "ref"})
+     * @ORM\Column(length=128, unique=false)
+     */
+    private $slug;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Brand")
      */
     private $brand;
@@ -60,7 +67,6 @@ class Product
 
     /**
      * @ORM\Column(type="string")
-     *
      */
     private $picture;
 
@@ -72,7 +78,7 @@ class Product
     private $description;
 
     /**
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     *
      */
     private $picture_file;
 
@@ -496,5 +502,29 @@ class Product
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Product
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
