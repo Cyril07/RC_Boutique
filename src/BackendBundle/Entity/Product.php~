@@ -67,7 +67,6 @@ class Product
 
     /**
      * @ORM\Column(type="string")
-     *
      */
     private $picture;
 
@@ -79,7 +78,7 @@ class Product
     private $description;
 
     /**
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     *
      */
     private $picture_file;
 
@@ -503,5 +502,29 @@ class Product
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Product
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

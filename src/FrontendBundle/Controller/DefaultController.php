@@ -56,7 +56,7 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/electronique")
 	 */
-	public function page_electronicsAction ()
+	public function electronics_pageAction ()
 	{
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('BackendBundle:Product')->findByCategory('1');
@@ -69,7 +69,7 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/kit")
 	 */
-	public function page_kitsAction ()
+	public function kits_pageAction ()
 	{
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('BackendBundle:Product')->findByCategory('2');
@@ -80,12 +80,37 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 *@Route("/product/{slug}", name="product_page")
-	 *@Method("GET")
+	 * @Route("/piece")
+	 */
+	public function pieces_pageAction ()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$products = $em->getRepository('BackendBundle:Product')->findByCategory('3');
+		
+		return $this->render('FrontendBundle::pieces_page.html.twig', array(
+            'products' => $products,
+        ));
+	}
+
+	/**
+	 * @Route("/consommable")
+	 */
+	public function consumables_pageAction ()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$products = $em->getRepository('BackendBundle:Product')->findByCategory('4');
+		
+		return $this->render('FrontendBundle::consumables_page.html.twig', array(
+            'products' => $products,
+        ));
+	}
+
+	/**
+	 * @Route("/product/{slug}", name="product_page")
+	 * @Method("GET")
 	 */
 	public function product_pageAction(Product $product)
-	{	
-
+	{
 		return $this->render('FrontendBundle::product_page.html.twig', array(
             'product' => $product,
         ));
