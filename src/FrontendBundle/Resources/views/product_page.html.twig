@@ -18,6 +18,9 @@
         font-size: 16px;
         float: right;
     }
+    #basket_add_button {
+        font-size: 30px;
+    }
 
 </style>
 
@@ -25,13 +28,17 @@
     <div id ="product_image" class="col-lg-6" >
         <h1>{{ product.lib }}</h1>
         <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" width="350px"/>
+        <hr>
+        <button id="basket_add_button" product_id="{{ product.id }}" type="button" class="btn btn-primary basket_add">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>                    
+        </button>
     </div>
 
     <div id="product_info" class="col-lg-6">
         <h2> Produit </h2>
         <p> Marque : {{ product.brand }} </p>   
         <p> Référence : {{ product.ref }} </p>        
-        <p> Prix : <b>{{ product.price }}€</b> </p>
+        <p> Prix : <b>{{ product.price }}€</b> </p> 
         <p> Description : {{ product.description }} </p>        
     </div>
 </div>
@@ -83,5 +90,36 @@
     {% endif %}
 
 </div>
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+{% if is_granted('ROLE_USER') %}
+
+<script>
+
+$(".basket_add").click(function(){
+  //console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
+
+
+  $.ajax({
+    url: "{{ path('basket_add') }}",
+    type: "POST",
+    data: { product_id: $(this).attr("product_id"),
+            user_id: {{ app.user.id }} 
+    },
+    sucess: function(data) {
+      console.log(data);
+    }
+  })
+})
+
+
+</script>
+
+{% endif %}
 
 {% endblock %}

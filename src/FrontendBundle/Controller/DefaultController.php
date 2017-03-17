@@ -60,11 +60,12 @@ class DefaultController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('BackendBundle:Product')->findByCategory('1');
-		
+
 		return $this->render('FrontendBundle::electronics_page.html.twig', array(
             'products' => $products,
         ));
 	}
+
 
 	/**
 	 * @Route("/kit")

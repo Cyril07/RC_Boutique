@@ -22,6 +22,7 @@ class SecondCategoryController extends Controller
      * @Route("/json_category", name="json_category")
      * @Method("POST")
      */
+    
     public function jsonAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();

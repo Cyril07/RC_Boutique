@@ -40,7 +40,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="lib", type="string", length=255)
+     * @ORM\Column(name="lib", type="string", length=70)
      */
     private $lib;
 

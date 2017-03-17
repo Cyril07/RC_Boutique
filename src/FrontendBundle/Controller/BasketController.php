@@ -42,6 +42,25 @@ class BasketController extends Controller
         return new Response();        
     }
 
+
+    /**
+     * @Route("/delete", name="basket_delete")
+     * @Method({"GET", "POST"})
+     */ 
+
+    public function deletebasketAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $request_basket_id = $request->request->get('basket_id');
+        $request_user_id = $request->request->get('user_id');
+        //echo $request_basket_id;die;
+        $basket = $em->getRepository("BackendBundle:Basket")->find($request_basket_id);
+        $user = $em->getRepository("BackendBundle:User")->find($request_user_id);        
+        $em->remove($basket);
+        $em->flush();
+        return new Response();        
+    }
+
     /**
      * @Route("/", name="basket")
      * @Method("GET")
@@ -50,10 +69,13 @@ class BasketController extends Controller
     public function basketAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $basket = $em->getRepository("BackendBundle:Basket")->findAll();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $baskets = $em->getRepository("BackendBundle:Basket")->findByUser($user);
 
         return $this->render('FrontendBundle::shopping_cart.html.twig', array(
-            'basket' => $basket,
+            'baskets' => $baskets,
         ));
     }
 }

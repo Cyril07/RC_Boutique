@@ -40,11 +40,12 @@
 
 </style>
 
+
   <div id="kit_header" class="jumbotron">
     
     <h1>Kits</h1>
     <img src="{{ asset( 'pictures/22-4.png') }}" style="height: 150px"alt="...">
-    <p> Prêt à rouler, à monter... toutes les voitures dont vous rêver se trouvent ici! </p>    
+    <p> Kit prêt à rouler, à monter... toutes les voitures dont vous rêver se trouvent ici! </p>    
 
   </div>
 
@@ -60,7 +61,7 @@
         </a>       
           <p>{{ product.price }}€</p>
           <p>
-              <button id="basket_add" product_id="{{ product.id }}" type="button" class="btn btn-primary">
+              <button id="basket_add_button" product_id="{{ product.id }}" type="button" class="btn btn-primary basket_add">
                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>                    
               </button>
               <button type="button" class="btn btn-primary">
@@ -81,14 +82,16 @@
 
 {% block javascripts %}
 
+{% if is_granted('ROLE_USER') %}
+
 <script>
 
-$("#add_basket").click(function(){
-  console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
+$(".basket_add").click(function(){
+  //console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
 
 
   $.ajax({
-    url: "{{ path('basket_index') }}",
+    url: "{{ path('basket_add') }}",
     type: "POST",
     data: { product_id: $(this).attr("product_id"),
             user_id: {{ app.user.id }} 
@@ -99,5 +102,9 @@ $("#add_basket").click(function(){
   })
 })
 
+
 </script>
+
+{% endif %}
+
 {% endblock %}
