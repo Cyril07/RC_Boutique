@@ -8,11 +8,11 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ motorTurn.id }}</td>
+                <td>{{ motorTurns.id }}</td>
             </tr>
             <tr>
                 <th>Turns</th>
-                <td>{{ motorTurn.turns }}</td>
+                <td>{{ motorTurns.turns }}</td>
             </tr>
         </tbody>
     </table>
@@ -22,7 +22,7 @@
             <a href="{{ path('motorturns_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('motorturns_edit', { 'id': motorTurn.id }) }}">Edit</a>
+            <a href="{{ path('motorturns_edit', { 'id': motorTurns.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

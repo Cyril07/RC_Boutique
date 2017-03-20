@@ -56,24 +56,49 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/electronique")
 	 */
-	public function electronics_pageAction ()
+	public function electronics_pageAction (Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$products = $em->getRepository('BackendBundle:Product')->findByCategory('1');
 
+        $query = $em->createQuery(
+        	'SELECT p
+        	FROM BackendBundle:Product p
+        	WHERE p.category = :category'
+        )->setParameter('category', 1);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $products = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*limit per page*/
+        );
+		
 		return $this->render('FrontendBundle::electronics_page.html.twig', array(
             'products' => $products,
         ));
 	}
 
-
 	/**
 	 * @Route("/kit")
 	 */
-	public function kits_pageAction ()
+	public function kits_pageAction (Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$products = $em->getRepository('BackendBundle:Product')->findByCategory('2');
+
+        $query = $em->createQuery(
+        	'SELECT p
+        	FROM BackendBundle:Product p
+        	WHERE p.category = :category'
+        )->setParameter('category',2);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $products = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*limit per page*/
+        );
 		
 		return $this->render('FrontendBundle::kits_page.html.twig', array(
             'products' => $products,
@@ -83,10 +108,23 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/piece")
 	 */
-	public function pieces_pageAction ()
+	public function pieces_pageAction (Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$products = $em->getRepository('BackendBundle:Product')->findByCategory('3');
+
+        $query = $em->createQuery(
+        	'SELECT p
+        	FROM BackendBundle:Product p
+        	WHERE p.category = :category'
+        )->setParameter('category', 3);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $products = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*limit per page*/
+        );
 		
 		return $this->render('FrontendBundle::pieces_page.html.twig', array(
             'products' => $products,
@@ -96,10 +134,23 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/consommable")
 	 */
-	public function consumables_pageAction ()
+	public function consumables_pageAction (Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$products = $em->getRepository('BackendBundle:Product')->findByCategory('4');
+
+        $query = $em->createQuery(
+        	'SELECT p
+        	FROM BackendBundle:Product p
+        	WHERE p.category = :category'
+        )->setParameter('category', 4);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $products = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*limit per page*/
+        );
 		
 		return $this->render('FrontendBundle::consumables_page.html.twig', array(
             'products' => $products,

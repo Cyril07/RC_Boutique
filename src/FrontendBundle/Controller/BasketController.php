@@ -67,15 +67,21 @@ class BasketController extends Controller
      */
 
     public function basketAction()
-    {
+    {   
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $securityContext = $this->container->get('security.authorization_checker');        
 
-        $baskets = $em->getRepository("BackendBundle:Basket")->findByUser($user);
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
-        return $this->render('FrontendBundle::shopping_cart.html.twig', array(
-            'baskets' => $baskets,
-        ));
+            $baskets = $em->getRepository("BackendBundle:Basket")->findByUser($user);
+
+            return $this->render('FrontendBundle::shopping_cart.html.twig', array(
+                'baskets' => $baskets,
+            ));
+        }
+
+        return $this->render('FrontendBundle::shopping_cart.html.twig');
     }
 }

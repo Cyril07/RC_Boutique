@@ -14,27 +14,27 @@
   #kit_header h1{
     color: #2e75b5;
     text-decoration: underline;
-    font-size: 35px;
+    font-size: 35px;    
   }
   #kit_header p{
-    color: #333;   
-  }
-  #kit_header img{
-    float: right;
-    position: absolute;
-    margin-top : -75px;
-    margin-left : 1000px;
+    color: #333;
+      
   }
   #list_of_product p{
     text-align: center;
     font-size: 18px;
+
   }
   a.btn.btn-primary{
     margin-left: 10px;
   }
   h3{
-    height: 80px;
+    height: 100px;
     text-align: center;
+  }
+  #kit_header img{
+    float:left;
+    margin-right: 30px;
   }
 
 
@@ -43,8 +43,8 @@
 
   <div id="kit_header" class="jumbotron">
     
-    <h1>Kits</h1>
     <img src="{{ asset( 'pictures/22-4.png') }}" style="height: 150px"alt="...">
+    <h1>Kits</h1>
     <p> Kit prêt à rouler, à monter... toutes les voitures dont vous rêver se trouvent ici! </p>    
 
   </div>
@@ -57,7 +57,7 @@
         <a href="{{ path('product_page', { 'slug': product.slug }) }}">
           <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" style="height: 150px"alt="...">
         <div class="caption">        
-          <h3>{{ product.lib }}</h3>
+          <h3>{{ product.secondCategory.lib ~ " " ~ product.brand.lib ~ " " ~ product.lib }}</h3>
         </a>       
           <p>{{ product.price }}€</p>
           <p>
@@ -71,8 +71,10 @@
         </div>
       </div>    
     </div>
-
   {% endfor %}
+  </div>
+  <div class="navigation text-center">
+    {{ knp_pagination_render(products) }}
   </div>
 
 </div>
