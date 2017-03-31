@@ -5,12 +5,12 @@ namespace BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Basket
+ * Order_detail
  *
- * @ORM\Table(name="basket")
- * @ORM\Entity(repositoryClass="BackendBundle\Repository\BasketRepository")
+ * @ORM\Table(name="order_detail")
+ * @ORM\Entity(repositoryClass="BackendBundle\Repository\Order_detailRepository")
  */
-class Basket
+class Order_detail
 {
     /**
      * @var int
@@ -34,9 +34,14 @@ class Basket
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="user")
+     * @ORM\ManyToOne(targetEntity="GlobalOrder")
      */
-    private $user;
+    private $globalOrder;
+
+
+    public function incQuantity() {
+        $this->quantity++;
+    }
 
 
     /**
@@ -54,7 +59,7 @@ class Basket
      *
      * @param integer $quantity
      *
-     * @return Basket
+     * @return Order_detail
      */
     public function setQuantity($quantity)
     {
@@ -78,7 +83,7 @@ class Basket
      *
      * @param \BackendBundle\Entity\Product $product
      *
-     * @return Basket
+     * @return Order_detail
      */
     public function setProduct(\BackendBundle\Entity\Product $product = null)
     {
@@ -98,26 +103,26 @@ class Basket
     }
 
     /**
-     * Set user
+     * Set globalOrder
      *
-     * @param \BackendBundle\Entity\user $user
+     * @param \BackendBundle\Entity\GlobalOrder $globalOrder
      *
-     * @return Basket
+     * @return Order_detail
      */
-    public function setUser(\BackendBundle\Entity\user $user = null)
+    public function setGlobalOrder(\BackendBundle\Entity\GlobalOrder $globalOrder = null)
     {
-        $this->user = $user;
+        $this->globalOrder = $globalOrder;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get globalOrder
      *
-     * @return \BackendBundle\Entity\user
+     * @return \BackendBundle\Entity\GlobalOrder
      */
-    public function getUser()
+    public function getGlobalOrder()
     {
-        return $this->user;
+        return $this->globalOrder;
     }
 }

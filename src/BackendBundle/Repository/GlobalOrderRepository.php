@@ -10,4 +10,18 @@ namespace BackendBundle\Repository;
  */
 class GlobalOrderRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function hasBasket ($user){
+		$qb=$this->createQueryBuilder("b")
+			->join("b.user", "u")
+			->leftJoin("b.order_details","od")
+			->where("b.open = true")
+		;
+		$result = $qb->getQuery()->getResult();
+		if ($result) return $result[0]; else return false;
+	}
+
+
+	
+
 }

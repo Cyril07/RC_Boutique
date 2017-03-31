@@ -2,27 +2,28 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>Orderdetail</h1>
+
+    <h1>Order_detail</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ orderDetail.id }}</td>
+                <td>{{ order_detail.id }}</td>
             </tr>
             <tr>
                 <th>Quantity</th>
-                <td>{{ orderDetail.quantity }}</td>
+                <td>{{ order_detail.quantity }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('orderdetail_index') }}">Back to the list</a>
+            <a href="{{ path('order_detail_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('orderdetail_edit', { 'id': orderDetail.id }) }}">Edit</a>
+            <a href="{{ path('order_detail_edit', { 'id': order_detail.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

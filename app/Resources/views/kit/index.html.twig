@@ -11,6 +11,8 @@
                 <th>Kitcompletness</th>
                 <th>Terrain</th>
                 <th>Drivetrainfull</th>
+                <th>Scale</th>
+                <th>Vehicule Type</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,6 +23,8 @@
                 <td>{% if kit.kitCompletness %}Yes{% else %}No{% endif %}</td>
                 <td>{% if kit.terrain %}Yes{% else %}No{% endif %}</td>
                 <td>{% if kit.driveTrainFull %}Yes{% else %}No{% endif %}</td>
+                <td>{{ kit.scale.lib }}</td>
+                <td>{{ kit.VehiculeType.lib }}</td>
                 <td>
                     <ul>
                         <li>

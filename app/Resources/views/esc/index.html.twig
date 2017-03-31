@@ -10,6 +10,8 @@
                 <th>Id</th>
                 <th>Waterproof</th>
                 <th>Sensored</th>
+                <th>Scale</th>
+                <th>Power</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,6 +21,8 @@
                 <td><a href="{{ path('esc_show', { 'id': esc.id }) }}">{{ esc.id }}</a></td>
                 <td>{% if esc.waterproof %}Yes{% else %}No{% endif %}</td>
                 <td>{% if esc.sensored %}Yes{% else %}No{% endif %}</td>
+                <td> {{ esc.scale.lib }} </td>
+                <td> {{ esc.power.lib }}</td>
                 <td>
                     <ul>
                         <li>

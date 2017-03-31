@@ -6,14 +6,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OrderDetailType extends AbstractType
+class Order_detailType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('quantity')->add('globalOrder')->add('product')        ;
+        $builder
+            ->add('quantity')
+            ->add('product')
+            ->add('user');
     }
     
     /**
@@ -22,7 +25,7 @@ class OrderDetailType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BackendBundle\Entity\OrderDetail'
+            'data_class' => 'BackendBundle\Entity\Order_detail'
         ));
     }
 
@@ -31,8 +34,6 @@ class OrderDetailType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backendbundle_orderdetail';
+        return 'backendbundle_order_detail';
     }
-
-
 }

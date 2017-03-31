@@ -25,17 +25,12 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <a href="{{ path('product_index') }}"><button type="button" class="btn btn-default"><b> Back to the list </b></button></a>
+
+        <a href="{{ path('product_edit', { 'id': product.id }) }}"><button type="button" class="btn btn-default"><b> Edit </b></button></a>       
+
+        {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-default"><b> Delete </b></button>
+        {{ form_end(delete_form) }}
+
 {% endblock %}

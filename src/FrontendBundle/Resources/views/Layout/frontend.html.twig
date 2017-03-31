@@ -62,72 +62,75 @@
 	}
 	#search{
 		background: #2e75b5;
+		height: 50px;
+		display: flex;
+	    flex-direction: column;
+	    justify-content: center;
 	}
-	.navbar-form .form-control{
-		width: 320px;
-	}
-
 
 </style>
 	
-	<div id="header" class="row">
-		
-		<div id="header_left" class="col-lg-5">
-			<a href="/RC_Boutique/web/app_dev.php/">
-				<h1 id="title"> RC Electric Car <img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/></h1>				
-			</a>
-		</div>
+<div id="header" class="row">
+	
+	<div id="header_left" class="col-lg-5">
+		<a href="/RC_Boutique/web/app_dev.php/">
+			<h1 id="title"> RC Electric Car <img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/></h1>				
+		</a>
+	</div>
 
-		<div id="header_right" class="col-lg-7">
+	<div id="header_right" class="col-lg-7">
 
-			<div id="user_menu" class="container">
-				<ul class="nav navbar-nav" >
-					<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Souhait </button>
+		<div id="user_menu" class="container">
+			<ul class="nav navbar-nav" >
+				<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Souhait </button>
+			
+				<a href="/RC_Boutique/web/app_dev.php/panier/"><button id="order_detail" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button></a>
+
+				{% if is_granted('ROLE_USER') %}
+					<a href="/RC_Boutique/web/app_dev.php/logout"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Deconnexion </button></a>
+				{% else %}
+					<a href="/RC_Boutique/web/app_dev.php/login"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion </button></a>
+				{% endif %}
 				
-					<a href="/RC_Boutique/web/app_dev.php/basket/"><button id="basket" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button></a>
-
-					{% if is_granted('ROLE_USER') %}
-						<a href="/RC_Boutique/web/app_dev.php/logout"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Deconnexion </button></a>
-    				{% else %}
-    					<a href="/RC_Boutique/web/app_dev.php/login"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion </button></a>
-					{% endif %}
+			</ul>	
 					
-				</ul>	
-						
+		</div>
+	</div>		
+</div>
+<div class="row">
+	<div id="header_low" class="col-lg-8">
+		<nav class="horizontal_menu">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+	                <li role="presentation">
+	                    <a href="/RC_Boutique/web/app_dev.php/kit"> Kits </a>
+	                </li>
+	                <li role="presentation">
+	                    <a href="/RC_Boutique/web/app_dev.php/electronique"> Electroniques </a>
+	                </li>
+	                	<li role="presentation">
+	                    <a href="/RC_Boutique/web/app_dev.php/piece"> Pièces </a>
+	                </li>
+	               	<li role="presentation">
+	                    <a href="/RC_Boutique/web/app_dev.php/consommable"> Consommables </a>
+	                </li>	                             
+        		</ul>
 			</div>
-		</div>		
+		</nav>
 	</div>
-	<div class="row">
-		<div id="header_low" class="col-lg-8">
-			<nav class="horizontal_menu">
-				<div class="container-fluid">
-					<ul class="nav navbar-nav">
-		                <li role="presentation">
-		                    <a href="/RC_Boutique/web/app_dev.php/kit"> Kits </a>
-		                </li>
-		                <li role="presentation">
-		                    <a href="/RC_Boutique/web/app_dev.php/electronique"> Electroniques </a>
-		                </li>
-		                	<li role="presentation">
-		                    <a href="/RC_Boutique/web/app_dev.php/piece"> Pièces </a>
-		                </li>
-		               	<li role="presentation">
-		                    <a href="/RC_Boutique/web/app_dev.php/consommable"> Consommables </a>
-		                </li>
-		                             
-	        		</ul>
-				</div>
-			</nav>
-		</div>
-		<div id="search" class="col-lg-4">
-			<form class="navbar-form navbar-left" role="search">
-            	<div id="search" class="form-group">
-					<input type="text" class="form-control" placeholder="Recherche par mot clés ou numéro de produit">
-					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-				</div>
-			</form>
-		</div>
+
+	<div id="search" class="col-lg-4">
+	    <div id="input_search" class="input-group">	    	
+	    	<input id="research_product" type="text" class="form-control" placeholder="Recherche par mot clés ou numéro de produit">
+	     		<span class="input-group-btn">
+	        		<button id="button_research" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+	     		</span>
+     		</input>	     	
+	    </div>
 	</div>
+	
+</div>
+
 
 {% endblock %}
 
@@ -139,4 +142,30 @@
 
 {% block footer %}
 	{% include 'FrontendBundle:Layout:footer.html.twig' %}
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+
+<script>
+
+$("#button_research").click(function(){
+ 	console.log($('#research_product').val());
+ 	
+  $.ajax({
+    url: "{{ path('search_page') }}",
+    type: "POST",
+    data: { research: $('#research_product').val(),            
+    },
+
+    sucess: function(data) {
+      console.log(data);
+    }
+  })
+})
+
+</script>
+
 {% endblock %}

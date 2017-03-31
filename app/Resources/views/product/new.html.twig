@@ -287,15 +287,13 @@
             </div>
 
 
-            <input type="submit" value="Create" />
+            <button type="submit" class="btn btn-default"><b>Crée</b></button>
 
         {{ form_end(form) }}
 
-        <ul>
-            <li>
-                <a href="{{ path('product_index') }}">Back to the list</a>
-            </li>
-        </ul>
+
+            <a href="{{ path('product_index') }}"><button type="submit" class="btn btn-default"><b>Back to the list</b></button></a>
+
 
 {% endblock %}
 

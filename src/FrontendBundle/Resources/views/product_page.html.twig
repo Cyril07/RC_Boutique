@@ -8,7 +8,8 @@
         margin: 20px 10px;
     }
     #product_image{
-        text-align: center
+        text-align: center;
+        margin-bottom: 20px;
     }
     #product_info{
         font-size: 16px;
@@ -18,7 +19,7 @@
         font-size: 16px;
         float: right;
     }
-    #basket_add_button {
+    #order_detail_add_button {
         font-size: 30px;
     }
 
@@ -31,7 +32,7 @@
 
         <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" width="350px"/>
         <hr>
-        <button id="basket_add_button" product_id="{{ product.id }}" type="button" class="btn btn-primary basket_add">
+        <button id="order_detail_add_button" product_id="{{ product.id }}" type="button" class="btn btn-primary order_detail_add">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>                    
         </button>
     </div>
@@ -103,12 +104,12 @@
 
 <script>
 
-$(".basket_add").click(function(){
+$(".order_detail_add").click(function(){
   //console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
 
 
   $.ajax({
-    url: "{{ path('basket_add') }}",
+    url: "{{ path('order_detail_add') }}",
     type: "POST",
     data: { product_id: $(this).attr("product_id"),
             user_id: {{ app.user.id }} 

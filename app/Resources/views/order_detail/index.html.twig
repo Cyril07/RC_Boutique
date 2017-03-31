@@ -2,7 +2,8 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>Orderdetails list</h1>
+
+    <h1>Order_details list</h1>
 
     <table class="table">
         <thead>
@@ -13,17 +14,17 @@
             </tr>
         </thead>
         <tbody>
-        {% for orderDetail in orderDetails %}
+        {% for order_detail in order_details %}
             <tr>
-                <td><a href="{{ path('orderdetail_show', { 'id': orderDetail.id }) }}">{{ orderDetail.id }}</a></td>
-                <td>{{ orderDetail.quantity }}</td>
+                <td><a href="{{ path('order_detail_show', { 'id': order_detail.id }) }}">{{ order_detail.id }}</a></td>
+                <td>{{ order_detail.quantity }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('orderdetail_show', { 'id': orderDetail.id }) }}">show</a>
+                            <a href="{{ path('order_detail_show', { 'id': order_detail.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('orderdetail_edit', { 'id': orderDetail.id }) }}">edit</a>
+                            <a href="{{ path('order_detail_edit', { 'id': order_detail.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -34,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('orderdetail_new') }}">Create a new orderDetail</a>
+            <a href="{{ path('order_detail_new') }}">Create a new order</a>
         </li>
     </ul>
 {% endblock %}

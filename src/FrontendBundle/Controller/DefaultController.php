@@ -167,4 +167,21 @@ class DefaultController extends Controller
             'product' => $product,
         ));
 	}
+
+	/**
+	 * @Route("/recherche", name="search_page")
+	 * @Method({"GET", "POST"})
+	 */
+	public function search_pageAction(Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+		$research = $request->request->get('research');		
+
+		$products = $em->getRepository('BackendBundle:Product')->getResultResearch($research);
+
+		return $this->render('FrontendBundle::search_page.html.twig', array(
+            'products' => $products,
+        ));
+	}
 }

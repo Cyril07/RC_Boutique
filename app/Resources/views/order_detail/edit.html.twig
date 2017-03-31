@@ -1,7 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'BackendBundle:Layout:backend.html.twig' %}
 
 {% block body %}
-    <h1>Basket edit</h1>
+    {{ parent() }}
+
+    <h1>Order_detail edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,7 +12,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('basket_index') }}">Back to the list</a>
+            <a href="{{ path('order_detail_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

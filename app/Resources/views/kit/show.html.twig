@@ -22,6 +22,15 @@
                 <th>Drivetrainfull</th>
                 <td>{% if kit.driveTrainFull %}Yes{% else %}No{% endif %}</td>
             </tr>
+            <tr>
+                <th>Scale</th>
+                <td>{{ kit.scale.lib }}</td>
+            </tr>
+            <tr>
+                <th>Vehicule Type</th>
+                <td>{{ kit.vehiculeType.lib }}</td>
+            </tr>
+
         </tbody>
     </table>
 

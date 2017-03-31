@@ -23,14 +23,13 @@
                 <td>{{ product.ref }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.lib }}</td>
+
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}"><span class="glyphicon glyphicon-eye-open"></span>show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}"><span class="glyphicon glyphicon-pencil"></span>edit</a>
-                        </li>
+                    <ul>                       
+                       <a href="{{ path('product_show', { 'id': product.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+                    
+                    
+                        <a href="{{ path('product_edit', { 'id': product.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a>
                     </ul>
                 </td>
             </tr>
@@ -38,9 +37,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_new') }}">Create a new product</a>
-        </li>
-    </ul>
+    <a href="{{ path('product_new') }}"><button class="btn btn-default"><b> Crée un nouveau produit </b></button></a>
+
 {% endblock %}

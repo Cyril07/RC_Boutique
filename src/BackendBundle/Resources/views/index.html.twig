@@ -3,79 +3,162 @@
 {% block body %}
     {{ parent() }}
 <div class="jumbotron">
-    <h1>Page d'Administration</h1>
+    <h1>Page d'Administration</h1>   
+
 </div>
 
 <div>
-    <a href="{{ path('contact_index') }}"> Message </a>
-</div>
 
-<div>
-    <ul class="nav nav-pills">
-        <li role="presentation">
-            <a href="{{ path('battery_index') }}"> Battery </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('batterytype_index') }}"> Battery Type </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('body_index') }}"> Body </a>
-        </li>    
+    <a href="{{ path('product_new') }}"> <button type="button" class="btn btn-default btn-lg">Create a New Product</button></a>
+
+    <a href="{{ path('product_index') }}"> <button type="button" class="btn btn-default btn-lg">List of Product</button></a>
+
+
+
+    <ul class="nav nav-pills">        
+   
         <li role="presentation">
             <a href="{{ path('brand_index') }}"> Brand </a>
         </li>
+
         <li role="presentation">
             <a href="{{ path('category_index') }}"> Category </a>
         </li>
-        <li role="presentation">
-            <a href="{{ path('cellcount_index') }}"> Cell Count </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('esc_index') }}"> Esc </a>
-        </li>
+
         <li role="presentation">
             <a href="{{ path('globalorder_index') }}"> Global Order </a>
         </li>
+
         <li role="presentation">
-            <a href="{{ path('kit_index') }}"> Kit </a>
+            <a href="{{ path('order_detail_index') }}"> Order detail </a>
         </li>
-        <li role="presentation">
-            <a href="{{ path('motor_index') }}"> Motor </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('motorturns_index') }}"> Motor Turns </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('oil_index') }}"> Oil </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('orderdetail_index') }}"> Order detail </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('power_index') }}"> Power </a>
-        </li>
-        <li role="presentation" class="active">
-            <a href="{{ path('product_index') }}"> Product </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('scale_index') }}"> Scale </a>
-        </li>
+
         <li role="presentation">
             <a href="{{ path('secondcategory_index') }}"> Second Category </a>
         </li>
-        <li role="presentation">
-            <a href="{{ path('tires_index') }}"> Tires </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('tirescolor_index') }}"> Tires Color </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('vehiculetype_index') }}"> Vehicule Type </a>
-        </li>
-        <li role="presentation">
-            <a href="{{ path('wt_index') }}"> Wt </a>
-        </li>
+
     </ul>
+</div>
+
+<div class="row">
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('battery_index') }}">      
+                <h3>Batterie</h3>
+            </a>
+          <img src="{{ asset( 'pictures/battery_orion.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('batterytype_index') }}"><li>Batterie Type</li></a>
+            <a href="{{ path('cellcount_index') }}"><li>Cell Count</li></a>        
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('kit_index') }}">      
+                <h3>Kit</h3>
+            </a>
+          <img src="{{ asset( 'pictures/22-4.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('scale_index') }}"><li>Scale</li></a>
+            <a href="{{ path('cellcount_index') }}"><li>Vehicule Type</li></a>        
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('esc_index') }}">      
+                <h3>Variateur</h3>
+            </a>
+          <img src="{{ asset( 'pictures/esc_orion.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('scale_index') }}"><li>Scale</li></a>
+            <a href="{{ path('power_index') }}"><li>Power</li></a>        
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('motor_index') }}">      
+                <h3>Moteur</h3>
+            </a>
+          <img src="{{ asset( 'pictures/motor_orion.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('scale_index') }}"><li>Scale</li></a>
+            <a href="{{ path('motorturns_index') }}"><li>Motor Turns</li></a>        
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('body_index') }}">      
+                <h3>Carrosserie</h3>
+            </a>
+          <img src="{{ asset( 'pictures/bd-body.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('scale_index') }}"><li>Scale</li></a>      
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('tires_index') }}">      
+                <h3>Pneu</h3>
+            </a>
+          <img src="{{ asset( 'pictures/shu_tires.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('scale_index') }}"><li>Scale</li></a> 
+            <a href="{{ path('tirescolor_index') }}"><li>Tires Color</li></a>    
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="admin_page_entity" class="col-lg-3">      
+      <div class="thumbnail">
+        <div class="caption text-center">
+            <a href="{{ path('oil_index') }}">      
+                <h3>Huile</h3>
+            </a>
+          <img src="{{ asset( 'pictures/oil_tlr.png') }}" style="height: 120px"alt="..." >
+        </div>
+
+        <ul>
+            <a href="{{ path('wt_index') }}"><li>WT</li></a> 
+        </ul>
+
+      </div>
+    </div> 
+
 </div>
 
 

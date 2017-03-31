@@ -22,13 +22,11 @@
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.message }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('contact_show', { 'id': contact.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contact_edit', { 'id': contact.id }) }}">edit</a>
-                        </li>
+                    <ul>                      
+                        <a href="{{ path('contact_show', { 'id': contact.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+                        
+                        <a href="{{ path('contact_edit', { 'id': contact.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                        
                     </ul>
                 </td>
             </tr>
@@ -36,9 +34,7 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('contact_new') }}">Create a new contact</a>
-        </li>
+    <ul>    
+        <a href="{{ path('contact_new') }}"><button class="btn btn-default"><b> Crée un nouveau contact </b></button></a>        
     </ul>
 {% endblock %}

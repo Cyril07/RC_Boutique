@@ -10,4 +10,13 @@ namespace BackendBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getResultResearch($research) {
+
+	$qb = $this->createQueryBuilder('p')	    
+	    ->where ('p.lib LIKE :research')
+	    ->setParameter('research','%'.$research.'%')
+	;
+
+    return $qb->getQuery()->getResult();
+	}
 }

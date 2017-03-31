@@ -14,6 +14,14 @@
                 <th>Frontwheelposition</th>
                 <td>{% if tires.frontWheelPosition %}Yes{% else %}No{% endif %}</td>
             </tr>
+            <tr>
+                <th>Scale</th>
+                <td>{{ tires.scale.lib }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ tires.tiresColor }}</td>
+            </tr>
         </tbody>
     </table>
 

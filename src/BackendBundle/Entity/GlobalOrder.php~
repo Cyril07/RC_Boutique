@@ -33,6 +33,20 @@ class GlobalOrder
      */
     private $user;
 
+    /**
+     *  @ORM\Column(name="open", type="boolean")
+     */
+    private $open;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalorder")
+     */
+    private $order_details;
+
+    public function __construct(){
+        $this->open = true;
+    }
+
 
     /**
      * Get id
@@ -90,5 +104,29 @@ class GlobalOrder
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set open
+     *
+     * @param boolean $open
+     *
+     * @return GlobalOrder
+     */
+    public function setOpen($open)
+    {
+        $this->open = $open;
+
+        return $this;
+    }
+
+    /**
+     * Get open
+     *
+     * @return boolean
+     */
+    public function getOpen()
+    {
+        return $this->open;
     }
 }

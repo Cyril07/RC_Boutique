@@ -33,6 +33,20 @@ class GlobalOrder
      */
     private $user;
 
+    /**
+     *  @ORM\Column(name="open", type="boolean")
+     */
+    private $open;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalOrder")
+     */
+    private $order_details;
+
+    public function __construct(){
+        $this->open = true;
+    }
+
 
     /**
      * Get id
@@ -90,5 +104,63 @@ class GlobalOrder
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set open
+     *
+     * @param boolean $open
+     *
+     * @return GlobalOrder
+     */
+    public function setOpen($open)
+    {
+        $this->open = $open;
+
+        return $this;
+    }
+
+    /**
+     * Get open
+     *
+     * @return boolean
+     */
+    public function getOpen()
+    {
+        return $this->open;
+    }
+
+    /**
+     * Add orderDetail
+     *
+     * @param \BackendBundle\Entity\Order_detail $orderDetail
+     *
+     * @return GlobalOrder
+     */
+    public function addOrderDetail(\BackendBundle\Entity\Order_detail $orderDetail)
+    {
+        $this->order_details[] = $orderDetail;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderDetail
+     *
+     * @param \BackendBundle\Entity\Order_detail $orderDetail
+     */
+    public function removeOrderDetail(\BackendBundle\Entity\Order_detail $orderDetail)
+    {
+        $this->order_details->removeElement($orderDetail);
+    }
+
+    /**
+     * Get orderDetails
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderDetails()
+    {
+        return $this->order_details;
     }
 }

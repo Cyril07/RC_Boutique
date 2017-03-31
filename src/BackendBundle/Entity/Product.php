@@ -117,6 +117,9 @@ class Product
      */
     private $tires;
 
+    public function __toString() {
+        return $this->lib;
+    }
     
     /**
      * Get id

@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>WT</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,6 +16,7 @@
         {% for oil in oils %}
             <tr>
                 <td><a href="{{ path('oil_show', { 'id': oil.id }) }}">{{ oil.id }}</a></td>
+                <td> {{ oil.wt.lib }} </td>
                 <td>
                     <ul>
                         <li>
