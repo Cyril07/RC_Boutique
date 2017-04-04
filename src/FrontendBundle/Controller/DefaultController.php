@@ -176,8 +176,10 @@ class DefaultController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		$research = $request->request->get('research');		
+		$research = $request->request->get('research_product');
 
+		var_dump($research);die;
+		
 		$products = $em->getRepository('BackendBundle:Product')->getResultResearch($research);
 
 		return $this->render('FrontendBundle::search_page.html.twig', array(

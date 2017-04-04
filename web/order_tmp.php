@@ -130,3 +130,35 @@
         $tot = $em->getRepository('BackendBundle:Order_detail')->total_order_detail($order_detail_id);
 
     }
+
+
+
+
+REPOSITORY
+
+
+
+        public function getOrder_detailForOneProduct($order_detail, $product) {
+        $qb = $this->createQueryBuilder('o')
+                ->join('o.product','p')
+                ->where ('o.id = '.$order_detail->getId())
+                ->andWhere('o.id = '.$product->getId())
+            ;
+            
+        $results = $qb->getQuery()->getResult();
+        if (count($results)==0) return null; else return $results[0];
+    }
+
+    public function total_order_detail($order_detail_id){
+        //var_dump($order_detail_id);
+
+        $qb = $this->createQueryBuilder('o')
+            ->select('SUM(p.price * o.quantity)')
+            ->join('o.product', 'p')
+            ->where ('o.id='.$order_detail_id);
+        //var_dump($qb->getQuery()->getSql());die;
+        $result= $qb->getQuery()->getSingleResult();
+        
+        var_dump($result);die;
+        return;
+    }

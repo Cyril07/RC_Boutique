@@ -39,7 +39,7 @@ class GlobalOrder
     private $open;
 
     /**
-     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalOrder")
+     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalOrder", cascade={"remove"})
      */
     private $order_details;
 

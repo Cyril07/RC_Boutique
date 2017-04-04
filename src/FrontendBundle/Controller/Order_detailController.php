@@ -18,60 +18,6 @@ use BackendBundle\Entity\GlobalOrder;
  */
 class Order_detailController extends Controller
 {
-
-
-/**
- * @Route("/add", name="order_detail_add")
- */
-    
-    public function addAction(Request $request){
-
-        $em = $this->getDoctrine()->getManager();
-        $product=$em->getRepository('BackendBundle:Product')->find($request->request->get('product_id'));
-        $user=$em->getRepository('BackendBundle:User')->find($request->request->get('user_id'));
-        if(!$product || !$user){
-
-            return new Response("Pas de User ou de Produit",400);   
-        }
-
-        //Vérification si le user a un panier
-
-        if ($globalOrder = $em->getRepository('BackendBundle:GlobalOrder')->hasBasket($user)) {
-            
-            if ($order_detail = $em->getRepository('BackendBundle:Order_detail')->isInBasket($globalOrder, $product)){
-
-                $order_detail->incQuantity();
-
-            }
-
-            else {
-                $order_detail = new Order_detail();
-                $order_detail->setProduct($product);
-                $order_detail->setQuantity(1);
-                $order_detail->setGlobalOrder($globalOrder);
-            }
-
-            $em->persist($order_detail);
-            $em->flush();
-            die('true');
-
-        }
-        else {
-
-            //Création du panier pour le user
-            $now= new \DateTime('now');
-            $globalOrder = new GlobalOrder();
-            $globalOrder->setUser($user);
-            $globalOrder->setDateOrder($now);
-            $em->persist($globalOrder);
-            $em->flush();
-
-            die('false');
-        }
-
-
-    }
-
     /**
      * @Route("/", name="order_detail")
      * @Method("GET")
@@ -140,4 +86,6 @@ class Order_detailController extends Controller
         
         return new Response();
     }
+
+
 }

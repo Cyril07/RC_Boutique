@@ -23,4 +23,14 @@ class Order_detailRepository extends \Doctrine\ORM\EntityRepository
 	$result = $qb->getQuery()->getResult();
 	if ($result) return $result[0]; else return false;
 	}
+
+	public function deleteOrderDetails($globalOrder){
+		$qb = $this->createQueryBuilder('od');
+		$qb->delete('Order_detail', 'od');
+		$qb->where('od.globalOrder = :globalOrder');
+		$qb->setParameter('globalOrder', $globalOrder);
+		$query = $qb->getQuery();
+    	$result = $query->getResult();
+
+	}
 }
