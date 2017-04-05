@@ -15,10 +15,23 @@
     text-align: center;
     font-size: 18px;
   }
+  #search_no_product{
+      display: block;
+      color: #2e75b5;
+      font-weight: normal;
+      margin: 30px 30px;
+      height: 300px;
+  }
+  .jumbotron h1{
+      color: #024d90;
+  }
 
 </style>
 
+
 <div id="list_of_product"class="row">
+
+{% if products %}
   {% for product in products %}
 
     <div id="item_of_product" class="col-lg-3">      
@@ -41,6 +54,19 @@
       </div>    
     </div>
   {% endfor %}
+{% else %}
 
+<div class="row">
+  <div class="col-lg-12">
+      <div id="search_no_product" class="jumbotron login">
+        <h1> Recherche </h1>
+        <p> Il n'y a pas de résultats à votre recherche </p>          
+      </div>
+  </div>
+</div>
+
+
+
+{% endif %}
 
 {% endblock %}

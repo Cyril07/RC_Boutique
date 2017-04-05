@@ -88,6 +88,9 @@ fos_user:
     from_email:
         address: "cy.lenglet@laposte.net"
         sender_name: "RC_Boutique"
+    registration:
+        form:
+            type: FrontendBundle\Form\RegistrationType
 
 # KNP Paginator Configuration
 knp_paginator:

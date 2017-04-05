@@ -108,8 +108,11 @@ class GlobalOrderController extends Controller
 
         $globalOrder = $em->getRepository("BackendBundle:GlobalOrder")->hasBasket($user);
 
+        $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($globalOrder->getId());
+
         return $this->render('FrontendBundle::summary_order.html.twig', array(
             'globalOrder' => $globalOrder,
+            'totalPrice' => $totalPrice[1],
         ));
         
     }

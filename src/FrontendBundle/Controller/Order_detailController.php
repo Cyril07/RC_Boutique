@@ -34,9 +34,11 @@ class Order_detailController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
             $globalOrder = $em->getRepository("BackendBundle:GlobalOrder")->hasBasket($user);
-
-            $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($globalOrder->getId());
-
+            $totalPrice = 0;
+            if ($globalOrder){
+                $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($globalOrder->getId());
+            }
+            
             return $this->render('FrontendBundle::shopping_cart.html.twig', array(
                 'globalOrder' => $globalOrder,
                 'totalPrice' => $totalPrice[1],

@@ -39,7 +39,7 @@ class GlobalOrder
     private $open;
 
     /**
-     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalorder")
+     * @ORM\OneToMany(targetEntity="Order_detail", mappedBy="globalOrder", cascade={"remove"})
      */
     private $order_details;
 
@@ -128,5 +128,39 @@ class GlobalOrder
     public function getOpen()
     {
         return $this->open;
+    }
+
+    /**
+     * Add orderDetail
+     *
+     * @param \BackendBundle\Entity\Order_detail $orderDetail
+     *
+     * @return GlobalOrder
+     */
+    public function addOrderDetail(\BackendBundle\Entity\Order_detail $orderDetail)
+    {
+        $this->order_details[] = $orderDetail;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderDetail
+     *
+     * @param \BackendBundle\Entity\Order_detail $orderDetail
+     */
+    public function removeOrderDetail(\BackendBundle\Entity\Order_detail $orderDetail)
+    {
+        $this->order_details->removeElement($orderDetail);
+    }
+
+    /**
+     * Get orderDetails
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderDetails()
+    {
+        return $this->order_details;
     }
 }
