@@ -114,16 +114,4 @@ class GlobalOrderController extends Controller
         
     }
 
-    private function global_order_detail($global_order_id){
-
-        $em = $this->getDoctrine()->getManager();
-
-        $tot = $em->getRepository('BackendBundle:GlobalOrder')->total_global_order($global_order_id);
-
-        return $this->render('FrontendBundle::summary_order.html.twig', array(
-            'tot' => $tot,
-        ));
-
-    }
-
 }

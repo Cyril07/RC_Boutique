@@ -20,20 +20,6 @@ class GlobalOrderRepository extends \Doctrine\ORM\EntityRepository
 		;
 		$result = $qb->getQuery()->getResult();
 		if ($result) return $result[0]; else return false;
-	}
-
-	public function total_global_order($global_order_id){
-        
-        $qb = $this->createQueryBuilder('g')
-            ->select('SUM(o.p.price * o.quantity)')
-            ->join('g.order_detail', 'o')
-            ->join('o.product', 'p')
-            ->where ('g.id='.$global_order_id);
-        
-        $result= $qb->getQuery()->getSingleResult();
-        
-        var_dump($result);die;
-        return;
-    }	
+	}	
 
 }

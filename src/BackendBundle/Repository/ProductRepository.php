@@ -13,8 +13,9 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
 	public function getResultResearch($research) {
 
-	$qb = $this->createQueryBuilder('p')	    
-	    ->where ('p.lib LIKE :research')
+	$qb = $this->createQueryBuilder('p')
+		->leftJoin('p.brand', 'b')    
+	    ->where ('p.lib LIKE :research OR p.ref LIKE :research OR b.lib LIKE :research')
 	    ->setParameter('research','%'.$research.'%')
 	;
 

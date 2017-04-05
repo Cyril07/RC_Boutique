@@ -35,9 +35,11 @@ class Order_detailController extends Controller
 
             $globalOrder = $em->getRepository("BackendBundle:GlobalOrder")->hasBasket($user);
 
-            
+            $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($globalOrder->getId());
+
             return $this->render('FrontendBundle::shopping_cart.html.twig', array(
                 'globalOrder' => $globalOrder,
+                'totalPrice' => $totalPrice[1],
             ));
         }
 
@@ -82,9 +84,11 @@ class Order_detailController extends Controller
         
         $em->persist($order_detail);
         $em->flush();
+
+        $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($order_detail->getGlobalOrder()->getId());
         
         
-        return new Response();
+        return new Response(json_encode($totalPrice));
     }
 
 

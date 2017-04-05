@@ -33,4 +33,18 @@ class Order_detailRepository extends \Doctrine\ORM\EntityRepository
     	$result = $query->getResult();
 
 	}
+
+	public function total_global_order($global_order_id){
+        
+        $qb = $this->createQueryBuilder('o')
+            ->select('SUM(p.price * o.quantity)')
+            ->join('o.globalOrder', 'g')
+            ->join('o.product', 'p')
+            ->where ('g.id='.$global_order_id);
+        
+        $result= $qb->getQuery()->getSingleResult();
+        
+        //var_dump($result);die;
+        return $result;
+    }	
 }

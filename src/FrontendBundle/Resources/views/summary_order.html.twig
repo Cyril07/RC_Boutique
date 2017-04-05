@@ -30,10 +30,10 @@ a:hover{
 			<thead>
 		        <tr>
 		            <th>#</th>
-		            <th>Quantité</th>
-		            <th>Marque</th>
-		            <th>Référence</th>
+		            <th>Référence</th>		            
+		            <th>Marque</th>		            
 		            <th>Produit</th>
+		            <th>Quantité</th>
 		            <th>Prix unité</th>
 		        </tr>
 		    </thead>
@@ -42,10 +42,10 @@ a:hover{
 		    <tbody>
 		        <tr>            
 		            <td>{{ key }}</td>        
-		            <td>{{ order_detail.quantity }}</td>        
-		            <td>{{ order_detail.product.brand }}</td>       
-		            <td>{{ order_detail.product.ref }}</td>        
+		            <td>{{ order_detail.product.ref }}</td>  
+		            <td>{{ order_detail.product.brand }}</td>	                    
 		            <td>{{ order_detail.product.lib }}</td>
+		            <td>{{ order_detail.quantity }}</td>
 		            <td>{{ order_detail.product.price }} €</td>		            
 		        </tr>
 
@@ -63,7 +63,7 @@ a:hover{
 
 		    <tbody>
 		    	<tr>
-		    		<td> " Total à calculé et a affiché "</td>
+		    		<td>{{ totalPrice }}</td>
 		    	</tr>
 		    </tbody>
 

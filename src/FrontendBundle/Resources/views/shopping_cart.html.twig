@@ -134,7 +134,7 @@ a:hover{
 				<div class="panel-footer">
 					<div class="row text-center">
 						<div class="col-xs-8">
-							<h4 class="text-right">Total <strong> Total €</strong></h4>
+							<h4 class="text-right">Total <strong> <span id="total_price">{{ totalPrice }}</span>€</strong></h4>
 						</div>
 						<div class="col-xs-4">
 							<a href="{{ path('confirmed_order') }}"><button type="button" class="btn btn-success btn-block">
@@ -184,7 +184,7 @@ $(".delete_product").click(function(){
     data: { order_detail_id: $(this).attr("order_detail_id"),
             user_id: {{ app.user.id }} 
     },
-    sucess: function(data) {
+    success: function(data) {
       console.log(data);
     }
 
@@ -206,8 +206,11 @@ $(".quantity_order_detail").bind("keypress click", function(){
 	    data: { order_detail_id: $(this).attr("order_detail_id"),
 	    		quantity: $(this).val(),
 	    },
-	    sucess: function(data) {
-	      console.log(data);
+	    success: function(data) {
+	      console.log('plop',data);
+	      var dataObj = JSON.parse(data);
+          console.log(dataObj);
+          $("#total_price").html(dataObj[1]);
 	    }
   	})
 })
