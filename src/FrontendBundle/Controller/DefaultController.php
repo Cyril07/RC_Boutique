@@ -184,6 +184,7 @@ class DefaultController extends Controller
 
 		return $this->render('FrontendBundle::search_page.html.twig', array(
             'products' => $products,
+            'research' => $research,
         ));
 	}
 }

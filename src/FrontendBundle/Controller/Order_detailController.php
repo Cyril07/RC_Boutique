@@ -34,7 +34,9 @@ class Order_detailController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
             $globalOrder = $em->getRepository("BackendBundle:GlobalOrder")->hasBasket($user);
+
             $totalPrice = 0;
+            
             if ($globalOrder){
                 $totalPrice = $em->getRepository("BackendBundle:Order_detail")->total_global_order($globalOrder->getId());
             }

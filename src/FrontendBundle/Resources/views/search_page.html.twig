@@ -11,19 +11,33 @@
     text-decoration: none;
     font-size: 20px;    
   }
-  #list_of_product p{
-    text-align: center;
+  #list_of_product p{    
     font-size: 18px;
   }
+  #item_of_product p{
+    text-align: center;
+  }
+
   #search_no_product{
-      display: block;
-      color: #2e75b5;
-      font-weight: normal;
-      margin: 30px 30px;
-      height: 300px;
+    display: block;
+    color: #2e75b5;
+    font-weight: normal;
+    margin: 30px 30px;
+    height: 300px;
   }
   .jumbotron h1{
       color: #024d90;
+  }
+  #search_product{
+    display: block;
+    color: #2e75b5;
+    font-weight: normal;
+    margin: 30px 30px;
+    height: 300px;
+  }
+  h3{
+    height: 100px;
+    text-align: center;
   }
 
 </style>
@@ -32,6 +46,12 @@
 <div id="list_of_product"class="row">
 
 {% if products %}
+
+  <div id="search_product" class="jumbotron login">
+    <h1> Recherche </h1>
+    <p> Résultat trouvé pour votre recherche "{{ research }}" </p>          
+  </div>
+
   {% for product in products %}
 
     <div id="item_of_product" class="col-lg-3">      
@@ -53,7 +73,9 @@
         </div>
       </div>    
     </div>
+  
   {% endfor %}
+
 {% else %}
 
 <div class="row">
@@ -64,8 +86,6 @@
       </div>
   </div>
 </div>
-
-
 
 {% endif %}
 
