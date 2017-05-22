@@ -73,7 +73,7 @@
 <div id="header" class="row">
 	
 	<div id="header_left" class="col-lg-5">
-		<a href="/RC_Boutique/web/app_dev.php/">
+		<a href="{{ path('home') }}">
 			<h1 id="title"> RC Electric Car <img src= "{{asset ('pictures/logo.png')}}" style="width: 150px"/></h1>				
 		</a>
 	</div>
@@ -84,12 +84,12 @@
 			<ul class="nav navbar-nav" >
 				<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Souhait </button>
 			
-				<a href="/RC_Boutique/web/app_dev.php/panier/"><button id="order_detail" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button></a>
+				<a href="{{ path('order_detail') }}"><button id="order_detail" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Panier </button></a>
 
 				{% if is_granted('ROLE_USER') %}
-					<a href="/RC_Boutique/web/app_dev.php/logout"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Deconnexion </button></a>
+					<a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Deconnexion </button></a>
 				{% else %}
-					<a href="/RC_Boutique/web/app_dev.php/login"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion </button></a>
+					<a href="{{ path('fos_user_security_login') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion </button></a>
 				{% endif %}
 				
 			</ul>	
@@ -103,16 +103,16 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 	                <li role="presentation">
-	                    <a href="/RC_Boutique/web/app_dev.php/kit"> Kits </a>
+	                    <a href="{{ path('kits_page') }}"> Kits </a>
 	                </li>
 	                <li role="presentation">
-	                    <a href="/RC_Boutique/web/app_dev.php/electronique"> Electroniques </a>
+	                    <a href="{{ path('electronics_page') }}"> Electroniques </a>
 	                </li>
 	                	<li role="presentation">
-	                    <a href="/RC_Boutique/web/app_dev.php/piece"> Pièces </a>
+	                    <a href="{{ path('pieces_page') }}"> Pièces </a>
 	                </li>
 	               	<li role="presentation">
-	                    <a href="/RC_Boutique/web/app_dev.php/consommable"> Consommables </a>
+	                    <a href="{{ path('consumables_pages') }}"> Consommables </a>
 	                </li>	                             
         		</ul>
 			</div>

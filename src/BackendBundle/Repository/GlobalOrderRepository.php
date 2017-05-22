@@ -17,6 +17,8 @@ class GlobalOrderRepository extends \Doctrine\ORM\EntityRepository
 			->join("b.user", "u")
 			->leftJoin("b.order_details","od")
 			->where("b.open = true")
+			->andWhere("b.user = :user")
+			->setParameter("user", $user)
 		;
 		$result = $qb->getQuery()->getResult();
 		if ($result) return $result[0]; else return false;

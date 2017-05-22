@@ -117,6 +117,11 @@ class Product
      */
     private $tires;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Piece")
+     */
+    private $piece;
+
     public function __toString() {
         return $this->lib;
     }
@@ -529,5 +534,29 @@ class Product
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set piece
+     *
+     * @param \BackendBundle\Entity\Piece $piece
+     *
+     * @return Product
+     */
+    public function setPiece(\BackendBundle\Entity\Piece $piece = null)
+    {
+        $this->piece = $piece;
+
+        return $this;
+    }
+
+    /**
+     * Get piece
+     *
+     * @return \BackendBundle\Entity\Piece
+     */
+    public function getPiece()
+    {
+        return $this->piece;
     }
 }

@@ -39,6 +39,7 @@ class ProductType extends AbstractType
             ->add('kit')
             ->add('oil')
             ->add('tires')
+            ->add('piece')
         ;
         //$builder->add('motor', MotorType::class);
     }

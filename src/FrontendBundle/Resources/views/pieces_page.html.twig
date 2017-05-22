@@ -51,22 +51,59 @@
   <div id="list_of_product"class="row">
   {% for product in products %}
 
-    <div id="item_of_product" class="col-lg-3">
-      <a href="{{ path('product_page', { 'slug': product.slug }) }}">
-        <div class="thumbnail">
+    <div id="item_of_product" class="col-lg-3">      
+      <div class="thumbnail">
+        <a href="{{ path('product_page', { 'slug': product.slug }) }}">
           <img src="{{ asset( 'uploads/pictures/'~product.picture ) }}" style="height: 150px"alt="...">
-          <div class="caption">        
-            <h3>{{ product.secondCategory.lib ~ " " ~ product.brand.lib ~ " " ~ product.lib }}</h3>        
-            <p>{{ product.price }}€</p>
-            <p><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></p>
-          </div>
+        <div class="caption">        
+          <h3>{{ product.secondCategory.lib ~ " " ~ product.brand.lib ~ " " ~ product.lib }}</h3>
+        </a>       
+          <p>{{ product.price }}€</p>
+          <p>
+              <button id="order_detail_add_button" product_id="{{ product.id }}" type="button" class="btn btn-primary order_detail_add">
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>                    
+              </button>
+              <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+          </p>
         </div>
-      </a>    
+      </div>    
     </div>
-
   {% endfor %}
+  </div>
+  <div class="navigation text-center">
+    {{ knp_pagination_render(products) }}
   </div>
 
 </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% if is_granted('ROLE_USER') %}
+
+<script>
+
+$(".order_detail_add").click(function(){
+  console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
+
+  $.ajax({
+    url: "{{ path('order_detail_add') }}",
+    type: "POST",
+    data: { product_id: $(this).attr("product_id"),
+            user_id: {{ app.user.id }} 
+    },
+    sucess: function(data) {
+      console.log(data);
+    }
+  })
+})
+
+{% endif %}
+</script>
+
 
 {% endblock %}

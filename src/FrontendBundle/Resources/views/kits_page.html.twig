@@ -91,7 +91,6 @@
 $(".order_detail_add").click(function(){
   console.log("ajout au panier"+$(this).attr("product_id")+" id user: "+{{ app.user.id }});
 
-
   $.ajax({
     url: "{{ path('order_detail_add') }}",
     type: "POST",
@@ -104,9 +103,9 @@ $(".order_detail_add").click(function(){
   })
 })
 
-
+{% endif %}
 </script>
 
-{% endif %}
+
 
 {% endblock %}

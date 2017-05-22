@@ -92,6 +92,11 @@
         <p> Viscosité : {{ product.oil.wt }} </p>             
     {% endif %}
 
+    {% if product.piece %}
+        <p> Pièce de remplacement correspondont à cette voiture : {{ product.piece.carName }} </p>
+        <p> Echelle : {{ product.piece.scale.lib }} </p>           
+    {% endif %}
+
 </div>
 
 {% endblock %}

@@ -233,6 +233,40 @@
         </table>
     </div>
 
+
+    <div class="second_category" id="piece" style="border:1px solid orange">
+        <table class="table">
+            <thead>
+            <h2> Piece </h2>
+                <tr>
+                    <th>Id</th>
+                    <th>Carname</th>
+                    <th>Scale</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for piece in second_category_details.piece %}
+                <tr class="piece active" pieceId= {{ piece.id }}>
+                    <td><a href="{{ path('piece_show', { 'id': piece.id }) }}">{{ piece.id }}</a></td>
+                    <td>{{ piece.carName }}</td>
+                    <td>{{ piece.scale.lib }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('piece_show', { 'id': piece.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('piece_edit', { 'id': piece.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     <h1>Product creation</h1>
 
 
@@ -284,6 +318,7 @@
                 {{ form_widget (form.kit) }}
                 {{ form_widget (form.oil) }}
                 {{ form_widget (form.tires) }}
+                {{ form_widget (form.piece) }}
             </div>
 
 
@@ -386,6 +421,14 @@
             var tiresId = $(this).attr('tiresId');
             console.log(tiresId);
             $("#backendbundle_product_tires").val(tiresId);
+            $("tr").removeClass("active");
+            $(this).addClass("active");
+        })
+
+        $("tr.piece").click(function(){
+            var pieceId = $(this).attr('pieceId');
+            console.log(pieceId);
+            $("#backendbundle_product_piece").val(pieceId);
             $("tr").removeClass("active");
             $(this).addClass("active");
         })

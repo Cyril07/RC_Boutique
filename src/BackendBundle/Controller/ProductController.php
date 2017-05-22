@@ -120,6 +120,7 @@ class ProductController extends Controller
         $kitForm = $this->createForm('BackendBundle\Form\KitType',$product->getKit());
         $oilForm = $this->createForm('BackendBundle\Form\OilType',$product->getOil());
         $tiresForm = $this->createForm('BackendBundle\Form\TiresType',$product->getTires());
+        $pieceForm = $this->createForm('BackendBundle\Form\PieceType',$product->getPiece());
 
 
         if ($editForm->isSubmitted() && $editForm->isValid()) 
@@ -202,6 +203,7 @@ class ProductController extends Controller
         $ret['kits'] = $em->getRepository('BackendBundle:Kit')->findAll();
         $ret['oils'] = $em->getRepository('BackendBundle:Oil')->findAll();
         $ret['tires'] = $em->getRepository('BackendBundle:Tires')->findAll();
+        $ret['piece'] = $em->getRepository('BackendBundle:Piece')->findAll();
 
         return $ret;
     }

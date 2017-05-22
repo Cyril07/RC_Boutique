@@ -1,0 +1,38 @@
+{% extends 'BackendBundle:Layout:backend.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h1>Piece</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ piece.id }}</td>
+            </tr>
+            <tr>
+                <th>Carname</th>
+                <td>{{ piece.carName }}</td>
+            </tr>
+            <tr>
+                <th>Scale</th>
+                <td>{{ piece.scale.lib }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('piece_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('piece_edit', { 'id': piece.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

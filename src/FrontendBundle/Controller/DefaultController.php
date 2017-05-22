@@ -14,7 +14,7 @@ use BackendBundle\Entity\Product;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -22,7 +22,7 @@ class DefaultController extends Controller
     }
 
     /**
-	 * @Route("/qui-sommes-nous")
+	 * @Route("/qui-sommes-nous", name="about_us")
 	 */
 	public function aboutAction()
 	{
@@ -30,7 +30,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/conditions-generales-de-vente")
+	 * @Route("/conditions-generales-de-vente", name="terms_of_sales")
 	 */
 	public function tofAction()
 	{
@@ -38,7 +38,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/livraison")
+	 * @Route("/livraison", name="shipping")
 	 */
 	public function shippingAction ()
 	{
@@ -46,7 +46,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/confirm-contact")
+	 * @Route("/confirm-contact", name="confirm_contact")
 	 */
 	public function confirm_contactAction ()
 	{
@@ -54,7 +54,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/electronique")
+	 * @Route("/electronique", name="electronics_page")
 	 */
 	public function electronics_pageAction (Request $request)
 	{
@@ -71,7 +71,7 @@ class DefaultController extends Controller
         $products = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            $request->query->getInt('limit', 4)/*limit per page*/
+            $request->query->getInt('limit', 8)/*limit per page*/
         );
 		
 		return $this->render('FrontendBundle::electronics_page.html.twig', array(
@@ -80,7 +80,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/kit")
+	 * @Route("/kit", name="kits_page")
 	 */
 	public function kits_pageAction (Request $request)
 	{
@@ -97,7 +97,7 @@ class DefaultController extends Controller
         $products = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            $request->query->getInt('limit', 4)/*limit per page*/
+            $request->query->getInt('limit', 8)/*limit per page*/
         );
 		
 		return $this->render('FrontendBundle::kits_page.html.twig', array(
@@ -106,7 +106,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/piece")
+	 * @Route("/part", name="pieces_page")
 	 */
 	public function pieces_pageAction (Request $request)
 	{
@@ -123,7 +123,7 @@ class DefaultController extends Controller
         $products = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            $request->query->getInt('limit', 4)/*limit per page*/
+            $request->query->getInt('limit', 8)/*limit per page*/
         );
 		
 		return $this->render('FrontendBundle::pieces_page.html.twig', array(
@@ -132,7 +132,7 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @Route("/consommable")
+	 * @Route("/consommable", name="consumables_pages")
 	 */
 	public function consumables_pageAction (Request $request)
 	{
@@ -149,7 +149,7 @@ class DefaultController extends Controller
         $products = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            $request->query->getInt('limit', 4)/*limit per page*/
+            $request->query->getInt('limit', 8)/*limit per page*/
         );
 		
 		return $this->render('FrontendBundle::consumables_page.html.twig', array(
